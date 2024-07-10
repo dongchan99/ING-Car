@@ -1,0 +1,474 @@
+/************************************
+
+    inform.html css ( 공지사항 css )
+
+************************************/
+.px-7 {
+  padding-left: 2.5rem; /* 예시로 2rem을 설정 */
+  padding-right: 2.5rem; /* 예시로 2rem을 설정 */
+}
+.review-box {
+  height: 80px;
+}
+
+.hover-click:hover{
+  font-size: larger;
+}
+
+
+
+
+/* modal */
+
+.my_modal {
+  display: none;
+  z-index: 9999;
+  width: 700px;
+  padding: 40px 60px;
+  position: fixed;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* center posts */
+
+.blog-item {
+  margin-top: 20px;
+  margin-bottom: 50px; /* 각 게시물 사이의 간격 설정 */
+  text-align: center; /* 부모 요소에서 텍스트 및 인라인 블록 요소를 가운데 정렬 */
+
+}
+  .popup_open_btn {
+    display: inline-block;
+    margin-top: auto; /* 버튼을 밑으로 위치시키기 위한 마진 */
+  }
+
+
+  .blog-content {
+    height: 330px; /* 내용의 높이 설정 */
+    overflow: hidden; /* 내용이 넘치는 경우를 대비하여 오버플로우를 숨김 */
+  }
+
+
+/* blog-images adjustment */
+
+.blog-img {
+  max-width: 400px; /* 원하는 최대 너비 */
+  max-height: 900px; /* 원하는 최대 높이 */
+
+}
+
+.blog-img img {
+  max-width: 100%; /* 이미지의 최대 너비를 부모 요소에 맞게 설정 */
+  height: 250px;
+}
+/* paging css */
+
+.pagination {
+  padding-bottom: 20px;
+}
+
+.wrapper {
+  height: 100vh;
+  /*This part is important for centering*/
+  display: grid;
+  place-items: center;
+}
+
+/* get you ~ typing css */
+.welcome-demo {
+  width: 100%;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 18px;
+  margin: 0 auto; /* 좌우 가운데 정렬 */
+}
+
+.container-fluid.blog {
+  text-align: center; /* 가운데 정렬 */
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
+
+
+.search-form {
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  padding-bottom: 40px; /* 폼 아래에 패딩 추가 */
+}
+
+.search-input {
+  padding: 10px; /* 입력 필드의 내부 패딩 */
+  border: 1px solid #ccc; /* 입력 필드의 테두리 */
+  border-radius: 10px; /* 입력 필드의 둥근 모서리 */
+  width: 200px; /* 입력 필드의 너비 */
+  margin-right: 4px; /* 입력 필드와 버튼 사이의 간격 */
+  font-size: 16px; /* 글자 크기 */
+  transition: all 0.3s ease; /* 전환 효과 */
+}
+
+.search-input:focus {
+  border-color: #d0dcff; /* 포커스 상태의 테두리 색상 */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* 포커스 상태의 그림자 효과 */
+  outline: none; /* 기본 포커스 테두리 제거 */
+}
+
+.search-button {
+  padding: 10px 20px; /* 버튼의 내부 패딩 */
+  border: none; /* 버튼의 테두리 제거 */
+  border-radius: 10px; /* 버튼의 둥근 모서리 */
+  background-color: rgba(77, 203, 216, 0.87); /* 버튼의 배경 색상 */
+  color: white; /* 버튼의 글자 색상 */
+  font-size: 16px; /* 글자 크기 */
+  cursor: pointer; /* 마우스 커서 변경 */
+  transition: background-color 0.3s ease; /* 배경 색상 전환 효과 */
+}
+
+.search-button:hover {
+  background-color: #559da1; /* 버튼 호버 상태의 배경 색상 */
+}
+
+  /************************************
+
+      index.html css ( 메인페이지 css )
+
+  ************************************/
+
+  #nav-link4 {
+    display: inline-block;
+    text-align: center;
+    font-size: 1.1rem; /*상단바메뉴 글씨크기 */
+    padding: 0.5rem 5rem 1rem;
+    color: #fff;
+    font-weight: 700; /* 상단바메뉴 글씨 굵*/
+    opacity: 1 !important;
+    word-spacing: -1rem;
+
+  }
+
+  #nav-link4:hover {
+    color: #00CED1;
+  }
+
+  @media (max-width: 991.98px) {
+    #nav-link4 {
+      padding-left: 0;
+      padding-right: 2rem;
+      padding-bottom: 6rem;
+      color: #00CED1;
+    }
+  }
+
+
+  .nav-link5 {
+    padding-top: 1rem;
+    display: inline-block;
+    padding-bottom: 6rem;
+    text-align: right;
+    font-size: 0.7rem; /*상단바메뉴 글씨크기 */
+    padding-right: 3rem;
+    color: #ffffff;
+    font-weight: 700; /* 상단바메뉴 글씨 굵기*/
+    margin-right: -0.6rem; /* 간격줄이기 */
+    opacity: 1 !important; /*불투명도 */
+
+  }
+
+  .nav-link5:hover { /* 로그인 로그아웃 상단메뉴 클릭시 색깔  변화주는것 */
+    color: #8B0000;
+  }
+
+  @media (max-width: 991.98px) {
+    .nav-link5 {
+      padding-left: 0;
+      padding-right: 3rem;
+      padding-bottom: 6rem;
+      color: #8B0000;
+    }
+  }
+
+
+  /*==================================*/
+
+  .btn-primary2 {
+    background-color: #788692;
+    border-color: #495e5f;
+    color: white;
+  }
+
+  .btn-primary2:hover {
+    background-color: #2e353b;
+    border-color: #6c757d;
+    color: white;
+  }
+
+
+  .btn-secondary3 {
+    background-color: #8d0f0f;
+    border-color: #1a1c1f;
+    color: #fff;
+  }
+
+  .btn-secondary3:hover {
+    background-color: #e31f1f;
+    border-color: #1a1c1f;
+    color: #ffffff;
+  }
+
+  .btn-secondary2 { /* 메인 차량필터링 검색버튼 */
+    margin-top: 150px;
+    margin-bottom: 100px;
+    margin-left: 90px;
+    color: #ffffff;
+    width: 120px;
+    font-size: 20px;
+    background-color: #8B0000;
+    border-color: #6c757d;
+  }
+
+  .btn-secondary2:hover {
+    color: #fff;
+    border-color: #8B0000;
+  }
+
+  .btn-secondary2:focus, .btn-secondary2.focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+  }
+
+  .btn-secondary2.disabled, .btn-secondary2:disabled {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+  }
+
+  .btn-secondary2:not(:disabled):not(.disabled):active, .btn-secondary2:not(:disabled):not(.disabled).active,
+  .show > .btn-secondary2.dropdown-toggle {
+    color: #fff;
+    background-color: #545b62;
+    border-color: #4e555b;
+  }
+
+  .btn-secondary2:not(:disabled):not(.disabled):active:focus, .btn-secondary2:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-secondary2.dropdown-toggle:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+  }
+
+
+  #morereview {
+    color: white;
+  }
+
+  #morereview:hover {
+    font-size: larger;
+  }
+
+
+  .navbar-brand2 {
+    font-size: 2rem !important; /* 잉카로고크*/
+    font-weight: 700;
+  }
+
+  @media (max-width: 991.98px) {
+    .ftco-navbar-light {
+      background: #000d1a !important;
+    }
+  }
+
+  .ftco-navbar-light .navbar-brand2 span {
+    color: #000339;
+  }
+
+  .navbar-brand2 ::after {
+    color: #000339;
+  }
+
+
+  .ftco-degree-bg2 {
+    position: relative;
+  }
+
+  .ftco-degree-bg2:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -80px;
+    overflow: visible;
+    width: 100%;
+    height: 80px;
+    z-index: 0;
+    -webkit-transform: skewY(-4deg);
+    -moz-transform: skewY(-4deg);
+    -ms-transform: skewY(-4deg);
+    -o-transform: skewY(-4deg);
+    transform: skewY(-4deg);
+    background-color: #001F3F;
+  }
+
+
+  #bg-light2 { /* 페이지 배경화면 색상 */
+    background: #001F3F !important;
+  }
+
+
+  .welcome-hero-txt {
+    text-align: center;
+    padding: 290px 0 372px;
+  }
+
+  .welcome-hero-txt h2 {
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 400;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-bottom: 45px;
+
+  }
+
+  @media (max-width: 800px) {
+    .welcome-hero-txt h2 {
+      font-size: 1rem;
+    }
+  }
+
+  @media (min-width: 800px) and (max-width: 1000px) {
+    .welcome-hero-txt h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (min-width: 890px) and (max-width: 1200px) {
+    .welcome-hero-txt h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .option-select {
+    color: black;
+  }
+
+
+  #model-search-content2 .col-sm-12 {
+    padding: 5px;
+
+  }
+
+  /* 차량필터링 선택 박스 */
+
+  #model-search-content2 {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: #F0F0F0;
+    box-shadow: 0 10px 40px 0px rgba(38, 40, 64, .2);
+    position: relative;
+    bottom: 80px;
+    width: 210%;
+    height: 100%;
+    border-radius: 5px;
+  }
+
+  @media (max-width: 800px) {
+    #model-search-content2 {
+      width: 120%;
+      padding: 5%;
+      right: 10%;
+    }
+  }
+  @media (min-width: 800.1px) and (max-width: 1000px) {
+    #model-search-content2 {
+      width: 120%;
+      right: 10%;
+      padding: 5%
+    }
+  }
+
+  /*.single-model-search*/
+
+
+  .single-model-search {
+    margin-bottom: 5px;
+  }
+
+  .single-model-search:last-child {
+    margin-bottom: 0;
+  }
+
+  .single-model-search h2 {
+    color: #000000;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    padding-top: 50px;
+  }
+
+
+  .ftco-section-parallax {
+    padding: 8em 0;
+    position: relative;
+    @media (max-width: 767.98px) {
+      .ftco-section-parallax {
+        padding: 20px;
+      }
+    }
+  }
+
+  .ftco-section-parallax .heading-section-white h2 {
+    font-weight: 400 !important;
+    margin-bottom: 150px;
+    margin-left: 300px;
+    margin-right: 300px;
+
+  }
+
+  @media (min-width: 768px) {
+    .ftco-intro .overlay2 {
+      position: absolute;
+      top: -120px;
+      left: -100px;
+      right: 0;
+      bottom: -120px;
+      width: 40%;
+      content: '';
+      opacity: 1;
+      background: #00CED1;
+      -ms-transform: rotate(20deg);
+      /* IE 9 */
+      -webkit-transform: rotate(20deg);
+      /* Safari 3-8 */
+      transform: rotate(20deg);
+    }
+  }
+
+
+  /* 수많은 매물들이 있는 잉카에서 <br>안전하게 직거래하세요! 반응형 */
+
+
+  @media (max-width: 1200px) {
+    .heading-section.heading-section-white h2 {
+      font-size: 30px;
+    }
+  }
+  @media (min-width: 772px) and (max-width: 1100px) {
+    .heading-section.heading-section-white h2 {
+      font-size: 24px;
+    }
+  }

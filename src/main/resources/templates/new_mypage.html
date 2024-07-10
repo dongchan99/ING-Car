@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <link rel="stylesheet" href="/css/new_mypage.css">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const countries = document.querySelector(".countries");
+            const sports = document.querySelector(".sports");
+            const countriesSlider = document.querySelector(".main__slider--countries");
+            const sportsSlider = document.querySelector(".main__slider--sports");
+            const main = document.querySelector(".main");
+
+// 추가
+            const logo=document.querySelector("#logo");
+            const hamburger=document.querySelector(".hamburger--bars");
+
+            countries.addEventListener("click", function() {
+                countriesSlider.style.visibility = "visible";
+                sportsSlider.style.visibility = "hidden";
+                main.classList.remove("main--sports");
+                this.classList.add("active");
+                sports.classList.remove("active");
+
+// 추가
+                logo.style.color="white";
+                logo.style.backgroundColor="#1f1f1f";
+                hamburger.style.background="white";
+            });
+
+            sports.addEventListener("click", function() {
+                countriesSlider.style.visibility = "hidden";
+                sportsSlider.style.visibility = "visible";
+                main.classList.add("main--sports");
+                this.classList.add("active");
+                countries.classList.remove("active");
+
+// 추가
+                logo.style.color="black";
+                logo.style.backgroundColor="white";
+                hamburger.style.background="black";
+            });
+
+            $(".main__slider").slick({
+                centerMode: true,
+                infinite: false,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                arrows: false,
+                initialSlide: 0,
+                responsive: [
+                    {
+                        breakpoint: 1000,
+                        settings: {
+                            slidesToShow: 1,
+                            fade: true
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+</head>
+<body>
+<section class="hero">
+    <header id="header">
+        <a id="logo" href="/" style="color: white; background-color: #1f1f1f; width: 100%; text-align: center; position: relative; top: 23.7px;">ING Car</a>
+    </header>
+
+    <main class="main">
+
+        <ul class="main__slider main__slider--countries">
+
+            <li class="main__item">
+                <div class="main__image" style="background-image:url('https://mrwallpaper.com/images/hd/mercedes-benz-on-the-road-iphone-r3wa5zo0rs8bwq0l.jpg')"></div>
+                <h1 class="main__title" style="color: white;"><a href="/mypage/buying" style="text-decoration-line: none">Buying</a></h1>
+            </li>
+
+            <!-- 나머지 슬라이드들 -->
+            <li class="main__item">
+                <div class="main__image" style="background-image:url('https://is.zobj.net/image-server/v1/images?r=HDMc1_YbBKgdi63kdKVzsdJId1Ix75RF9f0shSRgPn5FsPrS12VRevMMj3_qQwGXvMXpzzi820Axl_8TcUH4KIq3LOaRtLWrbc_1F3wKuMxlolwXCpORTN6hjEhrGf0Q6iIv4oJngK8xkIwR1speX7Td8YbrhHEaVKHZa5rY0YA21pX1TbDmRJV3evkQCaHjc7Z4oSBnb7f3jMTNCiorwROBWpTrWCedOcYx3v5VsB7E-fhVqJDkurUoNRY')"></div>
+                <h1 class="main__title" style="color: white;"><a href="/mypage/selling" style="text-decoration-line: none">Selling</a></h1>
+            </li>
+
+            <li class="main__item">
+                <div class="main__image" style="background-image:url('https://i.pinimg.com/736x/17/84/7c/17847c71ad5b9b88fc9610efa88ad0cd.jpg')"></div>
+                <h1 class="main__title" style="color: white;"><a href="/mypage/buyed" style="text-decoration-line: none">Buyed</a></h1>
+            </li>
+
+            <li class="main__item">
+                <div class="main__image" style="background-image:url('https://wallpapers.com/images/hd/bugatti-phone-6o9ivwztbcyxpg6o.jpg')"></div>
+                <h1 class="main__title" style="color: white;"><a href="/mypage/selled" style="text-decoration-line: none">Selled</a></h1>
+            </li>
+
+            <li class="main__item">
+                <div class="main__image" style="background-image:url('https://wallpapers.com/images/hd/bugatti-phone-6o9ivwztbcyxpg6o.jpg')"></div>
+                <h1 class="main__title" style="color: white;"><a href="mypage/cart" style="text-decoration-line: none">Cart</a></h1>
+            </li>
+
+        </ul>
+
+        <ul class="main__slider main__slider--sports" style="visibility:hidden;">
+
+            <!-- 스포츠 슬라이드들 -->
+
+
+            <li class="main__item">
+                <div class="main__image" style="background-image:url('https://t4.ftcdn.net/jpg/02/82/21/17/240_F_282211773_eylgpNd984xEvGqCQpaAiEs4p8gcryoM.jpg')"></div>
+                <h1 class="main__title"><a href="/mypage/profile" style="text-decoration-line: none">Profile</a></h1>
+            </li>
+
+            <li class="main__item">
+                <div class="main__image" style="background-image:url('https://hsccnh.org/wp-content/uploads/2020/08/auction-pritchards-cabinet-of-curiosities-300x245.jpg')"></div>
+                <h1 class="main__title"><a href="#" style="text-decoration-line: none">Withdrawal</a></h1>
+            </li>
+
+            <li class="main__item">
+                <div class="main__image" style="background-image:url('https://t3.ftcdn.net/jpg/00/92/66/20/360_F_92662026_9fiMh5jgCBIo9il3sQgMQCXdZ0W5afBa.jpg')"></div>
+                <h1 class="main__title"><a href="/mypage/update/car" style="text-decoration-line: none">Update</a></h1>
+            </li>
+
+            <li class="main__item">
+                <div class="main__image" style="background-image:url('https://t3.ftcdn.net/jpg/00/92/66/20/360_F_92662026_9fiMh5jgCBIo9il3sQgMQCXdZ0W5afBa.jpg')"></div>
+                <h1 class="main__title"><a href="/mypage/delete/car" style="text-decoration-line: none">Delete</a></h1>
+            </li>
+        </ul>
+
+        <!-- 다른 요소들은 생략합니다. -->
+        <div class="main__options">
+            <a class="main__option countries active" href="#">History</a>
+            <a class="main__option sports" href="#">Update</a>
+        </div>
+    </main>
+</section>
+
+<div class="hamburger">
+    <div class="hamburger--container">
+        <div class="hamburger--bars" style="background: white;"></div>
+    </div>
+</div>
+
+<div class="fsmenu">
+    <div class="fsmenu--container">
+        <div class="fsmenu--text-block">
+            <div class="fsmenu--text-container">
+                <ul class="fsmenu--list">
+                    <li class="fsmenu--list-element">
+                        <a href="list_menu.html">
+                            <span>Account</span>
+                        </a>
+                        <div class="fsmenu--scrolling-text">
+                            <span>Account</span><span>Account</span><span>Account</span><span>Account</span><span>Account</span>
+                        </div>
+                    </li>
+                    <li class="fsmenu--list-element">
+                        <a href="slide_menu.html">
+                            <span>Product</span>
+                        </a>
+                        <div class="fsmenu--scrolling-text">
+                            <span>Product</span><span>Product</span><span>Product</span><span>Product</span><span>Product</span>
+                        </div>
+                    </li>
+                    <li class="fsmenu--list-element">
+                        <a href="#">
+                            <span>Gallery</span>
+                        </a>
+                        <div class="fsmenu--scrolling-text">
+                            <span>Gallery</span><span>Gallery</span><span>Gallery</span><span>Gallery</span><span>Gallery</span>
+                        </div>
+                    </li>
+                    <li class="fsmenu--list-element">
+                        <a href="#">
+                            <span>About Us</span>
+                        </a>
+                        <div class="fsmenu--scrolling-text">
+                            <span>About Us</span><span>About Us</span><span>About Us</span><span>About Us</span><span>About Us</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.hamburger').click(function () {
+            var $this = $(this);
+            if ($this.hasClass('is-active')) {
+                $('.fsmenu, .logo').removeClass('is-active').addClass('close-menu');
+            } else {
+                $('.fsmenu, .logo').removeClass('close-menu').addClass('is-active');
+            }
+            $this.toggleClass('is-active');
+            //$('.fsmenu, .logo').removeClass('close-menu') // 여기다
+        });
+
+        $(".fsmenu--list-element").hover(
+            function () {
+                $(this).addClass('open').removeClass('is-closing');
+            },
+            function () {
+                $(this).removeClass('open').addClass('is-closing');
+            }
+        );
+    });
+</script>
+</body>
+</html>

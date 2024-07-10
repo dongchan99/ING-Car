@@ -1,0 +1,93 @@
+/* 사이드바 설정 */
+.filter-wrap {
+  position: fixed; /* 고정 위치 */
+  top: 60px; /* 상단에서 60px 아래에 위치 */
+  left: 0; /* 왼쪽에 위치 */
+  width: 16.66666667%; /* 전체 너비의 약 1/6 */
+  height: calc(100vh - 60px); /* 전체 높이에서 60px 빼고 적용 */
+  overflow-y: auto; /* 내용이 많을 경우 스크롤 생성 */
+  padding: 15px; /* 내부 패딩 */
+  background: #ffffff; /* 배경색 흰색 */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* 그림자 효과 */
+  z-index: 2; /* 레이어 순서 */
+  
+}
+
+/* 메인 콘텐츠 설정 */
+.body-content {
+  margin-left: 16.66666667%; /* 사이드바 너비와 동일하게 마진 설정 */
+  padding: 20px; /* 패딩 설정 */
+  overflow-x: hidden; /* 가로 스크롤 방지 */
+  background: #f8f9fa; /* 배경색 설정 */
+  min-height: calc(100vh - 60px); /* 최소 높이 설정 */
+}
+
+/* 버튼 기본 설정 */
+.btn-primary {
+  color: #fff; /* 글자색 흰색 */
+  background-color: #007bff; /* 배경색 파란색 */
+  border-color: #007bff; /* 테두리색 파란색 */
+  padding: 10px 15px; /* 패딩 설정 */
+  margin-top: 10px; /* 상단 마진 */
+  width: 100%; /* 너비 100% */
+  border-radius: 5px; /* 테두리 둥글게 */
+}
+
+.car-wrap {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 부드러운 애니메이션 효과 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 기본 그림자 효과 */
+  cursor: pointer; /* 마우스 커서 스타일 */
+  
+}
+
+.car-wrap:hover {
+  
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* 마우스 오버 시 그림자 강화 */
+}
+
+/* 필터 사이드바 기본 스타일 */
+.filter-sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  height: calc(100vh - 60px);
+  width: 18%;
+  overflow-y: auto;
+  z-index: 10;
+  background: #f8f9fa;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.filter-wrap h4 {
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+.input-field {
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  margin-bottom: 15px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.search-btn {
+  margin-top: 15px;
+  padding: 10px 15px;
+  width: 100%;
+  border-radius: 6px;
+  font-weight: bold;
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.search-btn:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+

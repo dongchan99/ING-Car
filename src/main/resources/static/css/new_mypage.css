@@ -1,0 +1,784 @@
+/* General styles */
+body {
+    font-family: 'PT Sans Caption', 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif;
+    font-size: 3vh;
+    margin: 0; /* 추가: 기본 마진 제거 */
+}
+
+/* Header styles */
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px;
+}
+
+#logo {
+    text-decoration: none;
+    color: white;
+    font-size: 5vh;
+    font-weight: bold;
+}
+
+#menu-icon {
+    font-family: Geneva, sans-serif;
+    font-size: 6vh;
+}
+
+/* Hero styles */
+.hero {
+    position: relative; /* 추가: 비디오 컨테이너를 상위 요소로 설정 */
+    overflow: hidden; /* 추가: 비디오가 넘치는 경우를 방지 */
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+.hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.hero-header {
+    margin-top: 250px; /* 추가: 헤더를 아래로 이동하여 히어로 섹션에 고정 */
+    text-align: center; /* 추가: 제목 가운데 정렬 */
+}
+
+.hero-title {
+    max-width: 16em;
+    margin: 0 auto; /* 추가: 가운데 정렬 */
+    font-size: 12vh;
+    font-weight: bold;
+    line-height: .9;
+}
+
+@media only screen and (min-width: 32em) {
+    .hero-title {
+        font-size: 16vh;
+    }
+}
+
+.hero-footer {
+    display: flex;
+    justify-content: center; /* 추가: 버튼 가운데 정렬 */
+}
+
+.button {
+    padding: .5em .67em;
+    color: white;
+    text-decoration: none;
+    border: .1em solid white;
+    margin: 0 1em; /* 추가: 버튼 사이 여백 추가 */
+}
+
+.button-primary {
+    color: black;
+    background-color: white;
+}
+
+/* Article styles */
+article {
+    max-width: 36em;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+/* --------------------------------------------------------------------------------------------------------- */
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #454545;
+    letter-spacing: .5px;
+    position: relative;
+}
+
+body {
+    body {
+        padding: 8em 3em 3em 0; /* 왼쪽 패딩을 0으로 설정 */
+    }
+}
+
+main {
+    width: 100%;
+    height: auto;
+}
+
+main img {
+    width: 100%;
+    display: block;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #1e1e1e;
+}
+
+.hamburger {
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    top: 3em;
+    right: 3em;
+    z-index: 10000;
+    background: transparent;
+    cursor: pointer;
+}
+
+.hamburger.is-active .hamburger--container .hamburger--bars {
+    background: white;
+}
+
+.hamburger.is-active .hamburger--container .hamburger--bars:before,
+.hamburger.is-active .hamburger--container .hamburger--bars:after {
+    background: white;
+}
+
+.hamburger.is-active .hamburger--container .hamburger--bars:before {
+    left: .25em;
+}
+
+.hamburger.is-active .hamburger--container .hamburger--bars:after {
+    left: -.25em;
+}
+
+.hamburger--container {
+    width: 100%;
+    padding: .25em;
+    position: relative;
+}
+
+.hamburger--bars {
+    height: 3px;
+    width: 1.5em;
+    background: #ffffff;
+    position: absolute;
+    top: 0.9em;
+    transition: .3s ease;
+}
+
+.hamburger--bars:before,
+.hamburger--bars:after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 1.5em;
+    background: inherit;
+    position: absolute;
+    left: 0;
+    transition: .3s ease;
+}
+
+.hamburger--bars:before {
+    top: -.5em;
+}
+
+.hamburger--bars:after {
+    top: .5em;
+}
+
+.logo {
+    width: 5em;
+    height: 5em;
+    position: absolute;
+    top: 1.5em;
+    left: 3em;
+    z-index: 10000;
+    filter: invert(1);
+}
+
+.logo img {
+    width: 100%;
+    display: block;
+    transition: .3s linear .3s;
+}
+
+.logo.is-active img {
+    filter: invert(100%);
+}
+
+.fsmenu {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    overflow: hidden;
+    display: none;
+}
+
+.fsmenu--container {
+    width: 0;
+    height: 100vh;
+    padding: 8em 3em 3em;
+    background: #000;
+    position: absolute;
+    right: 0;
+    overflow: hidden;
+}
+
+.fsmenu--text-block {
+    width: 100%;
+    height: 100%;
+}
+
+.fsmenu--text-container {
+    width: 100%;
+    height: 100%;
+}
+
+.fsmenu--list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.fsmenu--list-element {
+    width: 100%;
+    height: 25%;
+    list-style-type: none;
+    text-align: right;
+}
+
+.fsmenu--list-element a {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transition: .2s ease;
+}
+
+.fsmenu--list-element a:hover {
+    color: #E63946;
+}
+
+.fsmenu--list-element a span {
+    font-size: 5em;
+    font-weight: 700;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    line-height: 1;
+    height: 1em;
+    display: inline-block;
+    position: relative;
+    z-index: 1002;
+}
+
+.fsmenu--list-element a span:before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    z-index: 1003;
+}
+
+.fsmenu--scrolling-text {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform: translate(-20%, -100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.fsmenu--scrolling-text span {
+    height: 1em;
+    font-size: 8em;
+    font-weight: 900;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #1e1e1e;
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.fsmenu--list-element:hover .fsmenu--scrolling-text {
+    opacity: 1;
+    animation: animScrollingContactTextLeft 9s linear 0s infinite;
+}
+
+.fsmenu--link-img {
+    width: 0;
+    height: 100vh;
+    padding: 8em 3em 3em;
+    position: absolute;
+    top: 0;
+    right: calc(100vw - 720px);
+    z-index: 1001;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.fsmenu--img-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.fsmenu--img-container img {
+    width: 624px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.fsmenu--list-element.open .fsmenu--link-img {
+    left: auto;
+    right: calc(100vw - 720px);
+    animation: animMenuRevealImg .4s ease 0s forwards;
+}
+
+.fsmenu--list-element.open .fsmenu--img-container img {
+    right: 0;
+    left: auto;
+}
+
+.fsmenu--list-element.is-closing .fsmenu--link-img {
+    left: 0;
+    right: auto;
+    animation: animMenuCloseImg .4s ease 0s forwards;
+}
+
+.fsmenu--list-element.is-closing .fsmenu--img-container img {
+    left: 0;
+    right: auto;
+}
+
+.fsmenu.is-active {
+    display: block;
+}
+
+.fsmenu.is-active .fsmenu--container {
+    animation: animMenuReveal .6s cubic-bezier(.13, .13, .02, 1.07) 0s forwards;
+}
+
+.fsmenu.is-active .fsmenu--container .fsmenu--list-element a span:before {
+    animation: animMenuRevealLinks .4s cubic-bezier(.13, .13, .02, 1.07) .4s forwards;
+}
+
+.fsmenu.close-menu {
+    /*display: block;*/
+}
+
+.fsmenu.close-menu .fsmenu--container {
+    width: 100vw;
+    right: auto;
+    left: 0;
+    animation: animMenuClose .6s cubic-bezier(.13, .13, .02, 1.07) .3s forwards;
+}
+
+.fsmenu.close-menu .fsmenu--list-element a span:before {
+    left: auto;
+    right: 0;
+    background: black;
+    animation: animMenuCloseLinks .4s cubic-bezier(.13, .13, .02, 1.07) 0s forwards;
+}
+
+@keyframes animMenuReveal {
+    0% {
+        width: 0vw;
+    }
+
+    100% {
+        width: 100vw;
+    }
+}
+
+@keyframes animMenuRevealLinks {
+    0% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}
+
+@keyframes animMenuClose {
+    0% {
+        width: 100vw;
+        padding: 8em 3em 3em;
+    }
+
+    100% {
+        width: 0vw;
+        padding: 8em 0 0;
+    }
+}
+
+@keyframes animMenuCloseLinks {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 110%;
+    }
+}
+
+@keyframes animMenuRevealImg {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 720px;
+    }
+}
+
+@keyframes animMenuCloseImg {
+    0% {
+        width: 720px;
+    }
+
+    100% {
+        width: 0;
+    }
+}
+
+@keyframes animScrollingContactTextLeft {
+    0% {
+        transform: translate(-20%, -100%);
+    }
+
+    100% {
+        transform: translate(-40%, -100%);
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------- */
+
+@font-face {
+    font-family: "LeagueSpartanVariable";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2101521/LeagueSpartanVariable.ttf");
+}
+
+@font-face {
+    font-family: "SourceSerifVariable";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2101521/SourceSerifVariable-Roman.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #fff;
+}
+
+:root {
+    --black: #1f1f1f;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    font-family: "LeagueSpartanVariable";
+    background-color: var(--black); /* 수정된 부분 */
+    overflow: hidden;
+    transition: background-color .3s; /* 수정된 부분 */
+}
+
+/*.main:before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    background: url("http://ashleydutton.co.uk/assets/images/noise.png");*/
+/*    opacity: 0.5;*/
+/*}*/
+
+.main__slider {
+    position: fixed !important;
+    width: 100vw;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.main__slider.slick-initialized .slick-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.main__item.slick-slide {
+    position: relative;
+    opacity: 0.4;
+    transition: opacity 0.5s;
+    outline: none;
+}
+
+.main__item.slick-current {
+    opacity: 1;
+}
+
+.main__item.slick-current .main__title {
+    animation: grow 0.5s;
+    animation-delay: 0.1s;
+    animation-fill-mode: forwards;
+}
+
+.main__item.slick-current .main__image {
+    transform: scale(1);
+}
+
+.main__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-variation-settings: "wght" 200;
+    animation: shrink 0.5s;
+    animation-fill-mode: forwards;
+    cursor: grab;
+}
+
+.main__image {
+    width: 380px;
+    height: 500px;
+    transform: scale(0.5);
+    transition: transform 0.5s;
+    transition-delay: 0.1s;
+    background-size: cover;
+    background-position: center;
+    cursor: grab;
+}
+
+.main__image:active, .main__title:active {
+    cursor: grabbing;
+}
+
+.main__credit {
+    position: fixed;
+    bottom: 30px;
+    right: 50px;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    font-variation-settings: "wght" 200;
+}
+
+.main__credit a {
+    text-decoration: none;
+    font-variation-settings: "wght" 650;
+}
+
+.main__info {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+}
+
+.main__info:hover + .main__info-window {
+    opacity: 1;
+    max-height: 200px;
+}
+
+.main__info-window {
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    width: 300px;
+    max-height: 0;
+    padding: 20px;
+    background: #fff;
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.4em;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.main__options {
+    display: flex;
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+}
+
+.main__option {
+    position: relative;
+    font-size: 14px;
+    margin-right: 30px;
+    text-decoration: none;
+    font-variation-settings: "wght" 300;
+    transition: all .3s;
+}
+
+.main__option.active {
+    font-variation-settings: "wght" 700;
+}
+
+.main__option.active:after {
+    content: '';
+    position: absolute;
+    background: #fff;
+    height: 1px;
+    width: 100%;;
+    bottom: -5px;
+    left: 0;
+}
+
+.main--sports {
+    background: #fff;
+}
+
+.main--sports:before {
+    opacity: 1;
+}
+
+.main--sports * {
+    color: var(--black);
+}
+
+.main--sports .main__item.slick-current .main__title {
+    font-family: "SourceSerifVariable";
+    animation: none;
+}
+
+.main--sports .main__title {
+    font-family: "SourceSerifVariable";
+}
+
+.main--sports .main__item.slick-current:hover .main__title {
+    animation: grow 0.3s;
+    animation-delay: 0.1s;
+    animation-fill-mode: forwards;
+}
+
+.main--sports .main__item.slick-current .main__title {
+    font-size: 50px;
+    animation: shrink 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.main--sports .main__image {
+    width: 500px;
+    height: 350px;
+    opacity: .7;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.main--sports .main__option.active:after {
+    background: var(--black);
+}
+
+.main--sports .main__info-icon {
+    stroke: var(--black);
+}
+
+.main--sports .main__info-window {
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+
+/* Animations */
+
+@keyframes grow {
+    0% {
+        font-variation-settings: "wght" 200;
+        font-size: 50px;
+    }
+    100% {
+        font-variation-settings: "wght" 650;
+        font-size: 125px;
+    }
+}
+
+@keyframes shrink {
+    0% {
+        font-variation-settings: "wght" 650;
+        font-size: 125px;
+    }
+    100% {
+        font-variation-settings: "wght" 200;
+        font-size: 50px;
+    }
+}
+
+/*---------------------------------------*/
+
+@media only screen and (max-width: 650px){
+    .main__image {
+        height: 350px;
+    }
+
+    .main__info {
+        top: 20px;
+        right: 20px;
+    }
+
+    .main__item.slick-slide {
+        margin: 0 20px;
+    }
+
+    .main__credit {
+        bottom: 25px;
+        right: 25px;
+    }
+
+    .main__options {
+        bottom: 25px;
+        left: 25px;
+    }
+
+    @keyframes grow {
+        0% {
+            font-variation-settings: "wght" 200;
+            font-size: 65px;
+        }
+        100% {
+            font-variation-settings: "wght" 650;
+            font-size: 65px;
+        }
+    }
+
+    @keyframes shrink {
+        0% {
+            font-variation-settings: "wght" 650;
+            font-size: 65px;
+        }
+        100% {
+            font-variation-settings: "wght" 200;
+            font-size: 65px;
+        }
+    }
+}

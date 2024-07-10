@@ -1,0 +1,20 @@
+@media screen and (max-width:1440px) {
+	.model-search-content {
+		position: relative;
+		bottom: 0;
+		top: 100px;
+	}
+}
+
+/*max-width:1440px*/
+
+
+
+@media screen and (max-width:991px) {
+
+	.model-search-content {
+		padding: 0 20px;
+	}
+}
+
+/*max-width:991px*/

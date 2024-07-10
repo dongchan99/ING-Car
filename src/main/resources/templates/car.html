@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+		rel="stylesheet">
+
+	<link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="/css/animate.css">
+
+	<link rel="stylesheet" href="/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="/css/magnific-popup.css">
+
+	<link rel="stylesheet" href="/css/aos.css">
+
+	<link rel="stylesheet" href="/css/ionicons.min.css">
+
+	<link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="/css/jquery.timepicker.css">
+
+
+	<link rel="stylesheet" href="/css/flaticon.css">
+	<link rel="stylesheet" href="/css/icomoon.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/customHG.css">
+</head>
+
+<body style="overflow-x: hidden">
+
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="/">ing<span>car</span></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav">
+					<!-- <ul class="navbar-nav ml-auto"> -->
+					<!-- <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li> -->
+					<!-- <li class="nav-item"><a href="about.html" class="nav-link">About</a></li> -->
+					<li class="nav-item"><a href="/car_registration" class="nav-link">내차팔기</a></li>
+					<!-- <li class="nav-item"><a href="pricing.html" class="nav-link">내차사기</a></li> -->
+					<li class="nav-item active"><a href="/car_list" class="nav-link">내차사기</a></li>
+					<li class="nav-item"><a href="/review_main" class="nav-link">후기 게시판</a></li>
+					<li class="nav-item"><a href="/mypage" class="nav-link">마이페이지</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- END nav -->
+
+	<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/images/bg_3.jpg');"
+		data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+				<div class="col-md-9 ftco-animate pb-5">
+					<p class="breadcrumbs"><span class="mr-2"><a href="/">메인 <i
+									class="ion-ios-arrow-forward"></i></a></span> <span>내차사기 <i
+								class="ion-ios-arrow-forward"></i></span></p>
+					<h1 class="mb-3 bread">등록된 차량</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+
+	<section class="ftco-section bg-light">
+		<div class="container-fluid" style="white-space: nowrap;">
+			<div class="row">
+				<div class="col-md-2" style="position: fixed; top: 60px; left: 0; height: 100vh; overflow-y: auto; z-index: 10;">
+					<div class="filter-wrap">
+						<h4>차량 검색</h4>
+						<!-- Model Name -->
+						<div class="form-group">
+							<label for="model-name">모델명</label>
+							<input type="text" id="model-name" class="form-control">
+						</div>
+						<!-- Brand filter -->
+						<div class="form-group">
+							<label for="brand">브랜드</label>
+							<select class="form-control input-field" id="brand">
+								<option>아우디</option>
+								<option>포르쉐</option>
+								<option>벤츠</option>
+								<option>람보르기니</option>
+								<option>현대</option>
+								<option>기아</option>
+							</select>
+						</div>
+						<!-- Price Range -->
+						<div class="form-group">
+							<label for="price-range">가격대</label>
+							<div class="input-group">
+								<input type="number" id="min-price" class="form-control input-field" placeholder="최솟값 (원)" min="0">
+								<div class="input-group-append">
+									<span class="input-group-text">~</span>
+								</div>
+								<input type="number" id="max-price" class="form-control input-field" placeholder="최댓값 (원)" min="0">
+							</div>
+						</div>
+						<!-- Mileage -->
+						<div class="form-group">
+							<label for="mileage">주행 거리</label>
+							<div class="input-group">
+								<input type="number" id="min-mileage" class="form-control input-field" placeholder="최솟값 km" min="0">
+								<div class="input-group-append">
+									<span class="input-group-text">~</span>
+								</div>
+								<input type="number" id="max-mileage" class="form-control input-field" placeholder="최댓값 km" min="0">
+							</div>
+						</div>
+						
+						<!-- Fuel Type -->
+						<div class="form-group">
+							<label for="fuel-type">연료</label>
+							<select class="form-control input-field" id="fuel-type">
+								<option>경유</option>
+								<option>전기</option>
+								<option>하이브리드</option>
+							</select>
+						</div>
+						<!-- Accident History -->
+						<div class="form-group">
+							<label for="accident">사고 유무</label>
+							<select class="form-control input-field" id="accident">
+								<option>사고</option>
+								<option>무사고</option>
+							</select>
+						</div>
+						<!-- Color Selection -->
+						<div class="form-group">
+							<label for="color">색상 선택</label>
+							<select class="form-control input-field" id="color">
+								<option>색상1</option>
+								<option>색상2</option>
+								<option>색상3</option>
+								<option>색상4</option>
+							</select>
+						</div>
+						<!-- Apply button -->
+						<button type="button" class="btn btn-primary search-btn">검색</button>
+					</div>
+				</div>
+				
+				<div class="col-md-12 offset-md-2 main-content">
+					
+					<div class="row">
+				<div class="col-md-3">
+					<a href="car_detail.html">
+					<div class="car-wrap rounded ftco-animate">
+						
+						<p>등록일자:2024.04.21</p>
+						<div class="img rounded d-flex align-items-end"
+							style="background-image: url('/images/car-1.jpg');">
+						</div>
+						<div class="text">
+							<h2 class="mb-0"><a href="car_detail.html">메르세데스 그랜드 세단</a></h2>
+							<div class="d-flex mb-3">
+								<span class="cat">벤츠</span>
+								
+								<p class="price ml-auto">5678만원 <span>/주행거리:1000km</span> </p>
+							</div>
+							<p>연식:2017년</p>
+							<div class="d-flex flex-column mb-0 align-items-center" style="margin-bottom: 20px;">
+								<div class="d-flex" style="margin: 0 10px 20px 10px;">
+									<a href="#" class="btn btn-primary py-2 mr-1">가솔린</a>
+									<a href="#" class="btn btn-primary py-2 mr-1">무사고</a>
+									<a href="#" class="btn btn-primary py-2 mr-1">빨간색</a>
+								</div>
+								
+							</div>
+							
+						</div>
+					</div>
+					</a>
+				</div>
+				<div class="col-md-3">
+					<a href="car_detail.html">
+					<div class="car-wrap rounded ftco-animate">
+						
+						<p>등록일자:2024.04.20</p>
+						<div class="img rounded d-flex align-items-end"
+							style="background-image: url(images/car-2.jpg);">
+						</div>
+						<div class="text">
+							<h2 class="mb-0"><a href="car_detail.html">렌드로버</a></h2>
+							<div class="d-flex mb-3">
+								<span class="cat">스바루</span>
+								
+								<p class="price ml-auto">3450만원 <span>/주행거리:2000km</span> </p>
+							</div>
+							<p>연식:2015년</p>
+							<div class="d-flex flex-column mb-0 align-items-center" style="margin-bottom: 20px;">
+								<div class="d-flex" style="margin: 0 10px 20px 10px;">
+									<a href="#" class="btn btn-primary py-2 mr-1">경유</a>
+									<a href="#" class="btn btn-primary py-2 mr-1">무사고</a>
+									<a href="#" class="btn btn-primary py-2 mr-1">흰색</a>
+								</div>
+								
+							</div>
+							
+						</div>
+					</div>
+					</a>
+				</div>
+				<div class="col-md-3">
+					<a href="car_detail.html">
+					<div class="car-wrap rounded ftco-animate">
+						
+						<p>등록일자:2024.04.19</p>
+						<div class="img rounded d-flex align-items-end"
+							style="background-image: url(images/car-3.jpg);">
+						</div>
+						<div class="text">
+							<h2 class="mb-0"><a href="car_detail.html">포르쉐 911</a></h2>
+							<div class="d-flex mb-3">
+								<span class="cat">포르쉐</span>
+								
+								<p class="price ml-auto">9800만원 <span>/주행거리:1000km</span> </p>
+							</div>
+							<p>연식:2019년</p>
+							<div class="d-flex flex-column mb-0 align-items-center" style="margin-bottom: 20px;">
+								<div class="d-flex" style="margin: 0 10px 20px 10px;">
+									<a href="#" class="btn btn-primary py-2 mr-1">가솔린</a>
+									<a href="#" class="btn btn-primary py-2 mr-1">무사고</a>
+									<a href="#" class="btn btn-primary py-2 mr-1">흰색</a>
+								</div>
+								
+							</div>
+							
+						</div>
+					</div>
+					</a>
+				</div>
+				<div class="col-md-1"> <!-- Intentional empty column for right margin --></div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+					<a href="car_detail.html">
+						<div class="car-wrap rounded ftco-animate">
+							
+							<p>등록일자:2024.04.18</p>
+							<div class="img rounded d-flex align-items-end"
+								style="background-image: url(images/car-4.jpg);">
+							</div>
+							<div class="text">
+								<h2 class="mb-0"><a href="car_detail.html">메르세데스 그랜드 세단</a></h2>
+								<div class="d-flex mb-3">
+									<span class="cat">벤츠</span>
+									
+									<p class="price ml-auto">4558만원 <span>/주행거리:10000km</span> </p>
+								</div>
+								<p>연식:2013년</p>
+								<div class="d-flex flex-column mb-0 align-items-center" style="margin-bottom: 20px;">
+									<div class="d-flex" style="margin: 0 10px 20px 10px;">
+										<a href="#" class="btn btn-primary py-2 mr-1">경우</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">사고</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">검쟁색</a>
+									</div>
+									
+								</div>
+								
+							</div>
+						</div>
+						</a>
+					</div>
+					
+					<div class="col-md-3">
+						<a href="car_detail.html">
+						<div class="car-wrap rounded ftco-animate">
+							
+							<p>등록일자:2024.04.17</p>
+							<div class="img rounded d-flex align-items-end"
+								style="background-image: url(images/car-5.jpg);">
+							</div>
+							<div class="text">
+								<h2 class="mb-0"><a href="car_detail.html">BMW7</a></h2>
+								<div class="d-flex mb-3">
+									<span class="cat">BMW</span>
+									
+									<p class="price ml-auto">5678만원 <span>/주행거리:4000km</span> </p>
+								</div>
+								<p>연식:2017년</p>
+								<div class="d-flex flex-column mb-0 align-items-center" style="margin-bottom: 20px;">
+									<div class="d-flex" style="margin: 0 10px 20px 10px;">
+										<a href="#" class="btn btn-primary py-2 mr-1">전기</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">사고</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">파랑색</a>
+									</div>
+									
+								</div>
+								
+							</div>
+						</div>
+						</a>
+					</div>
+					<div class="col-md-3">
+						<a href="car_detail.html">
+						<div class="car-wrap rounded ftco-animate">
+							
+							<p>등록일자:2024.04.16</p>
+							<div class="img rounded d-flex align-items-end"
+								style="background-image: url(images/car-6.jpg);">
+							</div>
+							<div class="text">
+								<h2 class="mb-0"><a href="car_detail.html">포르쉐 918 스파이더</a></h2>
+								<div class="d-flex mb-3">
+									<span class="cat">포르쉐</span>
+									
+									<p class="price ml-auto">9500만원 <span>/주행거리:15000km</span> </p>
+								</div>
+								<p>연식:2019년</p>
+								<div class="d-flex flex-column mb-0 align-items-center" style="margin-bottom: 20px;">
+									<div class="d-flex" style="margin: 0 10px 20px 10px;">
+										<a href="#" class="btn btn-primary py-2 mr-1">가솔린</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">무사고</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">빨간색</a>
+									</div>
+									
+								</div>
+								
+							</div>
+						</div>
+						</a>
+					</div>
+				<div class="col-md-1"> <!-- Intentional empty column for right margin --></div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-3">
+						<a href="car_detail.html">
+						<div class="car-wrap rounded ftco-animate">
+							
+							<p>등록일자:2024.04.15</p>
+							<div class="img rounded d-flex align-items-end"
+								style="background-image: url(images/car-7.jpg);">
+							</div>
+							<div class="text">
+								<h2 class="mb-0"><a href="car_detail.html">메르세데스 그랜드 세단</a></h2>
+								<div class="d-flex mb-3">
+									<span class="cat">벤츠</span>
+									
+									<p class="price ml-auto">4578만원 <span>/주행거리:20000km</span> </p>
+								</div>
+								<p>연식:2015년</p>
+								<div class="d-flex flex-column mb-0 align-items-center" style="margin-bottom: 20px;">
+									<div class="d-flex" style="margin: 0 10px 20px 10px;">
+										<a href="#" class="btn btn-primary py-2 mr-1">전기</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">무사고</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">검정색</a>
+									</div>
+									
+								</div>
+								
+							</div>
+						</div>
+						</a>
+					</div>
+					<div class="col-md-3">
+						<a href="car_detail.html">
+						<div class="car-wrap rounded ftco-animate">
+							
+							<p>등록일자:2024.04.14</p>
+							<div class="img rounded d-flex align-items-end"
+								style="background-image: url(images/car-8.jpg);">
+							</div>
+							<div class="text">
+								<h2 class="mb-0"><a href="car_detail.html">메르세데스 그랜드 세단</a></h2>
+								<div class="d-flex mb-3">
+									<span class="cat">벤츠</span>
+									
+									<p class="price ml-auto">5678만원 <span>/주행거리:1000km</span> </p>
+								</div>
+								<p>연식:2017년</p>
+								<div class="d-flex flex-column mb-0 align-items-center" style="margin-bottom: 20px;">
+									<div class="d-flex" style="margin: 0 10px 20px 10px;">
+										<a href="#" class="btn btn-primary py-2 mr-1">가솔린</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">무사고</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">빨간색</a>
+									</div>
+									
+								</div>
+								
+							</div>
+						</div>
+						</a>
+					</div>
+					<div class="col-md-3">
+						<a href="car_detail.html">
+						<div class="car-wrap rounded ftco-animate">
+							
+							<p>등록일자:2024.04.21</p>
+							<div class="img rounded d-flex align-items-end"
+								style="background-image: url(images/car-9.jpg);">
+							</div>
+							<div class="text">
+								<h2 class="mb-0"><a href="car_detail.html">메르세데스 그랜드 세단</a></h2>
+								<div class="d-flex mb-3">
+									<span class="cat">벤츠</span>
+									
+									<p class="price ml-auto">5678만원 <span>/주행거리:1000km</span> </p>
+								</div>
+								<p>연식:2017년</p>
+								<div class="d-flex flex-column mb-0 align-items-center" style="margin-bottom: 20px;">
+									<div class="d-flex" style="margin: 0 10px 20px 10px;">
+										<a href="#" class="btn btn-primary py-2 mr-1">가솔린</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">무사고</a>
+										<a href="#" class="btn btn-primary py-2 mr-1">빨간색</a>
+									</div>
+									
+								</div>
+								
+							</div>
+						</div>
+						</a>
+					</div>
+				<div class="col-md-1"> <!-- Intentional empty column for right margin --></div>
+				</div>
+
+				
+				
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col text-center">
+					<div class="block-27">
+						<ul>
+							<li><a href="#">&lt;</a></li>
+							<li class="active"><span>1</span></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">&gt;</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- --Footer start ------------ -->
+	<div th:insert="~{footer :: footer-fragment}"></div>
+	<!-- ---------------Footer end ------------ -->
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+				stroke="#F96D00" />
+		</svg></div>
+
+
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.easing.1.3.js"></script>
+	<script src="/js/jquery.waypoints.min.js"></script>
+	<script src="/js/jquery.stellar.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<script src="/js/aos.js"></script>
+	<script src="/js/jquery.animateNumber.min.js"></script>
+	<script src="/js/bootstrap-datepicker.js"></script>
+	<script src="/js/jquery.timepicker.min.js"></script>
+	<script src="/js/scrollax.min.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="/js/google-map.js"></script>
+	<script src="/js/main.js"></script>
+	<script src="/js/customHG.js"></script>
+
+</body>
+
+</html>

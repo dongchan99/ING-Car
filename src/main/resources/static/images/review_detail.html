@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- 후기 상세 페이지 -->
+
+<head>
+  <title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/css/animate.css">
+
+  <link rel="stylesheet" href="/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/css/magnific-popup.css">
+
+  <link rel="stylesheet" href="/css/aos.css">
+
+  <link rel="stylesheet" href="/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/css/jquery.timepicker.css">
+
+
+  <link rel="stylesheet" href="/css/flaticon.css">
+  <link rel="stylesheet" href="/css/icomoon.css">
+  <link rel="stylesheet" href="/css/style.css"> <!--css 원본파일-->
+  <link rel="stylesheet" href="/css/jihee.css"> <!--지희-->
+  <link rel="stylesheet" href="/css/custom_ha.css"> <!--현아언니-->
+  <style>
+    .star_rating .star,
+    .star_rating .star.on {
+      width: 38.5px;
+      height: 38.5px;
+    }
+
+    #review_detail_subject {
+      width: 340px;
+      text-align: left;
+      margin-bottom: 0px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .review_detail_content>.re_right li {
+      list-style: none;
+      text-align: left;
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <!--
+--------nav 상단바 start
+--------nav 상단바 start
+--------nav 상단바 start
+ -->
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
+
+    <div class="container">
+
+      <a class="navbar-brand2" href="index.html" style="color: #001F3F;">ING<span style="color: #00CED1;">Car</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+        aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+      <div class="collapse navbar-collapse" id="ftco-nav" style="white-space: nowrap; width: 80%; height: 100%;">
+        <ul class="navbar-nav">
+          <!-- ml-auto -->
+
+          <li class="nav-item"><a href="services.html" class="nav-link" id="nav-link4">내차팔기</a></li>
+          <li class="nav-item"><a href="car.html" class="nav-link" id="nav-link4">내차사기</a></li>
+          <li class="nav-item"><a href="review_main.html" class="nav-link" id="nav-link4">후기게시판</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link" id="nav-link4">마이페이지</a></li>
+        </ul>
+      </div>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto" style="white-space: nowrap;">
+          <li class="nav-item"><a href="login.html" class="nav-link2">로그인 </a></li>
+          <li class="nav-item"><a href="signup.html" class="nav-link2">회원가입 </a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--
+--------nav 상단바 end----------------------------
+--------nav 상단바 end ---------------------------
+--------nav 상단바 end----------------------------
+-->
+
+  <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_3.jpg');"
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+        <div class="col-md-9 ftco-animate pb-5">
+          <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                  class="ion-ios-arrow-forward"></i></a></span> <span>Review_Board <i
+                class="ion-ios-arrow-forward"></i></span>
+          </p>
+          <h1 class="mb-3 bread">후기 게시판</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-12 text-center d-flex ftco-animate">
+          <div class="blog-entry justify-content-end mb-md-5">
+            <div class="block-20 img" style='height:500px; width:1100px'>
+              <div class='review_detail_area'>
+                <div class='review_detail_img_area'>
+                  <img src="./images/car-10.jpg" alt="" class='review_detail_img' style='border-radius: 4px;'>
+                </div>
+                <div class="review_detail_header">
+                  <div class='re_left'>
+                    <h4 id="review_detail_subject">제목 길게 쓰면 점3개 나오는걸로 설정하기</h4>
+                    <div class='review_detail_writer_info'>
+                      <p>noogoosaeyo</p>
+                      <p>yyyy.mm.dd</p>
+                      <p>조회수 2</p>
+                    </div>
+                  </div>
+                  <div class='re_right'>
+                    <div class="star_rating" style='height:60px; padding-left:20px'>
+                      <span class="star on" value="1"> </span>
+                      <span class="star on" value="2"> </span>
+                      <span class="star on" value="3"> </span>
+                      <span class="star on" value="4"> </span>
+                      <span class="star on" value="5"> </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="review_detail_content">
+                  <div class='re_left'>
+                    <p class="review_detail_text">
+                      후기 상세 내용 들어갈 예정
+                      후기 상세 내용 들어갈 예정후기 상세 내용 들어갈 예정후기 상세 내용 들어갈 예정후기 상세 내용 들어갈 예정
+                      후기 상세 내용 들어갈 예정후기 상세 내용 들어갈 예정후기 상세 내용 들어갈 예정후기 상세 내용 들어갈 예정
+                    </p>
+                  </div>
+                  <div class='re_right'>
+                    <ul>
+                      <li>판매자 : 판매자1</li>
+                      <li>모델 : 씽씽다정한내친구</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class=' review_top_area'></div> -->
+              <div class='review_button_area'>
+                <button id='review_button' onclick="review_delete(event)" class='review_btn_del'>삭제</button>
+                <button id='review_button' onclick="review_repair(event)" class='review_btn_rep'>수정</button>
+              </div>
+            </div>
+
+
+            <!-- 아래는 댓글 들어가야함 -->
+            <div class="container mb-5 mt-5">
+              <div class="card">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h5 class="mb-5">
+                      Comments List
+                    </h5>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="media">
+                          <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview"
+                            src="./images/icon_car_role.png" />
+                          <div class="media-body">
+                            <div class="row">
+                              <div class="col-8 d-flex">
+                                <h6 style='margin-right: 10px;'>User id</h6>
+                                <span class='write_date'>2024.05.03 12:09</span>
+                              </div>
+                              <div class="col-4">
+                                <div class="pull-right reply">
+                                  <a data-toggle="collapse" href="#recomment" aria-expanded="false"
+                                    aria-controls="recomment"><span><i class="fa fa-reply"></i>reply</span></a>
+                                  <input data-idx="${review.idx }" src="./images/pencil_line_icon.png" type="image"
+                                    class="edit" value="수정">
+                                  <input data-idx="${review.idx }" src="./images/trash_outline_icon.png" type="image"
+                                    class="delete" value="삭제">
+                                </div>
+                              </div>
+                            </div>
+                            <div class='user_review_comment'>댓글 내용 댓글 내용</div>
+                            <!-- <div class="media mt-4">
+                              <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview"
+                                  src="./images/icon_car_role.png" /></a>
+                              <div class="media-body">
+                                <div class="row">
+                                  <div class="col-12 d-flex">
+                                    <h6 style='margin-right: 10px;'>User id2</h6>
+                                    <span class='write_date'>2024.05.03 12:09</span>
+                                  </div>
+                                </div>
+                                <div class='user_review_comment'>댓글 내용2 댓글 내용2</div>
+                              </div>
+                            </div> -->
+                            <!-- <div class="media mt-3">
+                              <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview"
+                                  src="./images/icon_car_role.png" /></a>
+                              <div class="media-body">
+                                <div class="row">
+                                  <div class="col-12 d-flex">
+                                    <h6 style='margin-right: 10px;'>User id3</h6>
+                                    <span class='write_date'>2024.05.03 12:09</span>
+                                  </div>
+                                </div>
+                                <div class='user_review_comment'>댓글 내용3 댓글 내용3</div>
+                              </div>
+                            </div> -->
+                          </div>
+                        </div>
+                        <!-- reply 버튼 눌렀을 때 대댓글 작성창이 나와야함 -->
+                        <div class="bg-light p-2" id='recomment' style='width: 80%; background:white'>
+                          <div class="d-flex flex-row align-items-start" style='padding-left:60px'>
+                            <img class="rounded-circle" src="./images/icon_car_role.png" width="40">
+                            <textarea id="reComment" class="form-control ml-1 shadow-none textarea"
+                              placeholder='대댓글을 남겨주세요.' style='font-size: 14px; width:800px' required>대댓글 쓰는중</textarea>
+                          </div>
+                          <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button"
+                              onclick=''>Post
+                              comment</button>
+                          </div>
+                        </div>
+                        <div class="media mt-4">
+                          <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview"
+                            src="./images/icon_car_role.png" />
+                          <div class="media-body">
+                            <div class="row">
+                              <div class="col-8 d-flex">
+                                <h6 style='margin-right: 10px;'>User id4</h6>
+                                <span class='write_date'>2024.05.03 12:09</span>
+                              </div>
+                              <div class="col-4">
+                                <div class="pull-right reply">
+                                  <span><i class="fa fa-reply"></i>reply</span>
+                                  <input data-idx="${review.idx }" src="./images/pencil_line_icon.png" type="image"
+                                    class="edit" value="수정">
+                                  <input data-idx="${review.idx }" src="./images/trash_outline_icon.png" type="image"
+                                    class="delete" value="삭제">
+                                </div>
+                              </div>
+                            </div>
+                            댓글 달아욥
+                            <div class="media mt-4">
+                              <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview"
+                                  src="./images/icon_car_role.png" /></a>
+                              <div class="media-body">
+                                <div class="row">
+                                  <div class="col-12 d-flex">
+                                    <h6 style='margin-right: 10px;'>User id5</h6>
+                                    <span class='write_date'>2024.05.03 17:24</span>
+                                  </div>
+                                </div>
+                                대댓글 씁니다.
+                              </div>
+                            </div>
+                            <div class="media mt-3">
+                              <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview"
+                                  src="./images/icon_car_role.png" /></a>
+                              <div class="media-body">
+                                <div class="row">
+                                  <div class="col-12 d-flex">
+                                    <h6 style='margin-right: 10px;'>User id4</h6>
+                                    <span class='write_date'>2024.05.03 17:24</span>
+                                  </div>
+                                </div>
+                                JSP 2.3 웹 프로그래밍 기초부터 중급까지
+                              </div>
+                            </div>
+                            <div class="media mt-3">
+                              <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview"
+                                  src="./images/icon_car_role.png" /></a>
+                              <div class="media-body">
+                                <div class="row">
+                                  <div class="col-12 d-flex">
+                                    <h6 style='margin-right: 10px;'>User id5</h6>
+                                    <span class='write_date'>2024.05.03 17:24</span>
+                                  </div>
+                                </div>
+                                Spring STS4
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- 댓글 리스트 끝 -->
+
+            <!-- 댓글 작성 창 시작 -->
+            <div class="bg-light p-2">
+              <div class="d-flex flex-row align-items-start">
+                <img class="rounded-circle" src="./images/icon_car_role.png" width="40">
+                <textarea id="commentwritearea" class="form-control ml-1 shadow-none textarea" placeholder='댓글을 남겨 주세요.'
+                  style='font-size: 14px;'>댓글 쓰는중</textarea>
+              </div>
+              <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button"
+                  onclick=''>Post
+                  comment</button>
+              </div>
+            </div>
+            <!-- 댓글 작성 창 끝 -->
+
+            <!--삭제 버튼 클릭시 모달 팝업-->
+            <div class="modal_del">
+              <div class="modal_popup_del">
+                <!-- 삭제 버튼 클릭시에만 보여져야함 -->
+                <form action="#" class='review_del_form' method='post'>
+                  <span>삭제를 계속 진행하실 경우, </span><br>
+                  <span>계정 비밀번호를 입력하세요.</span><br><br>
+                  비밀번호 : <input type="password" value='delete_pwd'>
+                  <!-- 비밀번호 일치할 시에만 삭제되도록 해야함 -->
+                  <input type="submit" value="확인" onclick="alert('비밀번호 일치할 시에만 삭제되도록 해야함');">
+                  <input type="button" value="닫기" class="del_close_btn">
+                </form>
+              </div>
+            </div>
+            <!--수정 버튼 클릭시 모달 팝업-->
+            <div class="modal">
+              <div class="modal_popup">
+                <!-- 수정 버튼 클릭시에만 보여져야함 -->
+                <form action="#" method="post" name='reviewform' onsubmit="" class='review_rep_form'>
+
+                  <table>
+                    <tr>
+                      <td>
+                        <h4 style='margin-bottom: 0; margin-top:10px; margin-bottom:10px'>후기 수정</h4>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td id='review_re'>
+                        <div class="star_rating">
+                          <span class="star on" value="1"> </span>
+                          <span class="star on" value="2"> </span>
+                          <span class="star" value="3"> </span>
+                          <span class="star" value="4"> </span>
+                          <span class="star" value="5"> </span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="reviewheader" style='width: 700px;'>
+                        <label for="reviewheader_area">
+                          <input class="reviewheader_area" type="text" placeholder="제목을 입력하세요" name="reviewtitle"
+                            id='reviewheader_area' style='width: 700px; height:40px'>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="review_txt" style='height:300px; margin-bottom:0;'>
+                          <textarea class="summernote" name="review_body" id='review_txt' maxlength='500'
+                            placeholder='  500자 이내로 기재해주세요.'
+                            style='width: 700px; resize:none; height: 300px;'></textarea>
+                          <script>
+                            document.getElementById("review_txt").addEventListener("focus", () => {
+                              //alert("Input field lost focus.");
+                              document.getElementById("review_txt").style.padding = "2px 2px 2px 10px"
+                              document.getElementById("review_txt").placeholder = '';
+                            });
+                            document.getElementById("review_txt").addEventListener("blur", () => {
+                              //alert("Input field lost focus.");
+                              document.getElementById("review_txt").style.padding = "2px 2px 2px 10px";
+                              document.getElementById("review_txt").placeholder = '500자 이내로 기재해주세요.';
+                            });
+                          </script>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="add_area" style="padding:0 15px;">
+                          <p class="txt_count"
+                            style="right:20px; bottom:15px; color:black; font-size:13px; text-align:right">
+                            <span id="chk_byte">0</span>/<span class="maximum">500</span>
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                    <script>
+                      /** 텍스트 영역(textarea) */
+                      let textarea1 = document.querySelector('.summernote');
+
+                      /** 입력 중인 문자 수 */
+                      let string_num = document.querySelector('#chk_byte');
+
+                      // 텍스트를 입력할 때마다 onKeyUp()을 실행
+                      textarea1.addEventListener('keyup', onKeyUp);
+                      function onKeyUp() {
+                        // 입력된 텍스트
+                        const inputText = textarea1.value;
+                        // 문자 수를 반영
+                        string_num.innerText = inputText.length;
+                      }
+                    </script>
+                    <tr style='text-align:center;'>
+                      <td class='reviewsub-btn' style='color: #01d28e; '>
+                        <!-- <input type="submit" value="등록" onclick="alert('수정이 완료되었습니다.');"> -->
+                        <input type="submit" value="등록" onclick="alert('수정이 완료되었습니다.');">
+                        <input type="button" value="닫기" class="close_btn">
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+            <!--end 모달 팝업-->
+            <script>
+
+              const modal = document.querySelector('.modal');
+              const modal_del = document.querySelector('.modal_del');
+              const modalClose_del = document.querySelector('.del_close_btn');
+              const modalOpen_del = document.querySelector('.review_btn_del');
+              const modalOpen = document.querySelector('.review_btn_rep');
+              const modalClose = document.querySelector('.close_btn');
+
+
+              // 삭제 버튼 눌렀을 때 모달 팝업
+              modalOpen_del.addEventListener('click', function () {
+
+                //'on' class 추가
+                modal_del.classList.add('on');
+
+              });
+
+              //수정 버튼을 눌렀을 때 모달팝업이 열림
+              modalOpen.addEventListener('click', function () {
+                //'on' class 추가
+                document.querySelector('.review_del_form').classList.add('on');
+                modal.classList.add('on');
+
+              });
+
+              //닫기 버튼을 눌렀을 때 모달팝업이 닫힘
+              modalClose.addEventListener('click', function () {
+                //'on' class 제거
+                modal.classList.remove('on');
+              });
+
+              //삭제 모달창 - 닫기 버튼을 눌렀을 때 모달팝업이 닫힘
+              modalClose_del.addEventListener('click', function () {
+                //'on' class 제거
+                modal_del.classList.remove('on');
+              });
+
+
+            </script>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- 
+---------------Footer start ------------
+---------------Footer start ------------
+---------------Footer start ------------
+ -->
+
+  <footer class="ftco-footer ftco-bg-dark ftco-section" style="background-color: #003F5C;">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2"><a href="#" class="logo" style="color: #d9e3ec;">ING<span
+                  style="color: #00CED1;">Car</span></a></h2>
+            <p>GET YOUR STUNNING CAR <br> IN REASONABLE PRICE WITH ING Car !</p>
+            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4 ml-md-5">
+            <h2 class="ftco-heading-2"></h2>
+            <ul class="list-unstyled">
+              <li><a href="services.html" class="py-2 d-block">내차팔기</a></li>
+              <li><a href="car.html" class="py-2 d-block">내차사기</a></li>
+              <li><a href="review_main.html" class="py-2 d-block">후기게시판 </a></li>
+              <li><a href="contact.html" class="py-2 d-block">마이페이지</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2"> </h2>
+            <ul class="list-unstyled">
+              <li><a href="#" class="py-2 d-block">자주 묻는 질문 </a></li>
+              <li><a href="#" class="py-2 d-block">개인정보처리방침 </a></li>
+              <li><a href="#" class="py-2 d-block">회사소개 </a></li>
+              <li><a href="#" class="py-2 d-block">인재채용 </a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">회사정보</h2>
+            <div class="block-23 mb-3">
+              <ul>
+                <li><span class="icon icon-map-marker"></span><span class="text">서울특별시 강남구 도산대로 888 </span></li>
+                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02-2222-3333</span></a></li>
+                <li><a href="#"><span class="icon icon-envelope"></span><span
+                      class="text">ingcar@ingcar.co.kr</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+
+          <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
+            <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com"
+              target="_blank">Colorlib</a>
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 
+---------------Footer end ------------
+---------------Footer end ------------
+---------------Footer end ------------
+-->
+
+
+  <!--loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+        stroke="#F96D00" />
+    </svg></div>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.easing.1.3.js"></script>
+  <script src="/js/jquery.waypoints.min.js"></script>
+  <script src="/js/jquery.stellar.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/aos.js"></script>
+  <script src="/js/jquery.animateNumber.min.js"></script>
+  <script src="/js/bootstrap-datepicker.js"></script>
+  <script src="/js/jquery.timepicker.min.js"></script>
+  <script src="/js/scrollax.min.js"></script>
+
+  <script src="/js/main.js"></script>
+
+  <script src="/js/custom_ha.js"></script><!--현아언니-->
+</body>
+
+</html>

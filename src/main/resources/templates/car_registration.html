@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/ionicons.min.css">
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.css">
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/icomoon.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jihee.css">
+  <link rel="stylesheet" href="css/car_registration_HG.css">
+</head>
+
+<body>
+
+<!--
+--------nav 상단바 start
+--------nav 상단바 start
+--------nav 상단바 start
+-->
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
+  <div class="container">
+    <a class="navbar-brand2" href="/" style="color: #001F3F;">ING<span style="color: #00CED1;">Car</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#ftco-nav" aria-controls="ftco-nav"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oi oi-menu"></span> Menu
+    </button>
+
+    <div class="collapse navbar-collapse" id="ftco-nav" style="white-space: nowrap; width: 80%; height: 100%;">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a th:href="@{/car_registration}" class="nav-link" id="nav-link4">내차팔기</a></li>
+        <li class="nav-item"><a th:href="@{/car_list}" class="nav-link" id="nav-link4">내차사기</a></li>
+        <li class="nav-item"><a th:href="@{/review_main}" class="nav-link" id="nav-link4">후기게시판</a></li>
+        <li class="nav-item"><a th:href="@{/inform}" class="nav-link" id="nav-link4">공지게시판</a></li>
+      </ul>
+    </div>
+
+    <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav ml-auto" style="white-space: nowrap;">
+        <li class="nav-item" th:if="${session.user_session == null}">
+          <a href="/loginPage" class="nav-link5">login</a>
+        </li>
+        <li class="nav-item" th:if="${session.user_session != null}">
+          <a href="/logout" class="nav-link5">logout</a>
+        </li>
+        <li class="nav-item"> <a href="/mypage" class="nav-link5">Mypage </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!--
+--------nav 상단바 end----------------------------
+--------nav 상단바 end ---------------------------
+--------nav 상단바 end----------------------------
+-->
+
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/images/registration_image.png');" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+      <div class="col-md-9 ftco-animate pb-5">
+        <p class="breadcrumbs"><span class="mr-2"><a href="/">메인 <i class="ion-ios-arrow-forward"></i></a></span> <span>내차팔기 <i class="ion-ios-arrow-forward"></i></span></p>
+        <h1 class="mb-3 bread">차량 등록하기</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container mt-5 mb-5">
+  <h2 class="text-center mb-4">판매 차량 등록</h2>
+  <form id="carForm" class="mx-auto" onsubmit="return false;">
+
+    <div class="section-container">
+      <div class="form-section">
+        <h3 style="color: #007bff;">차량 정보</h3>
+        <div class="form-group">
+          <label for="car_id">차량 번호</label>
+          <input type="text" class="form-control" id="car_id" name="carId" placeholder="차량 번호 입력">
+          <small class="form-error" id="error-car_id" style="color: red;">*차량 번호는 입력해야 합니다.</small>
+        </div>
+        <div class="form-group">
+          <label for="year">제조년도</label>
+          <input type="number" class="form-control" id="year" name="year" value="2024">
+          <small class="form-text text-muted">예: 2024</small>
+          <small class="form-error" id="error-year" style="color: red;">*제조년도 1900년도 이상 2024년도 미만을 입력해야 합니다.</small>
+        </div>
+        <div class="form-group">
+          <label for="mileage">주행거리</label>
+          <input type="number" class="form-control" id="mileage" name="mileage" placeholder="주행거리 입력 / 단위: (km)">
+          <small class="form-text text-muted">주행거리 (km)</small>
+          <small class="form-error" id="error-mileage" style="color: red;">*주행거리는 0이상을 입력해야 합니다.</small>
+        </div>
+      </div>
+      <div class="info-box">
+        <h4 style="color: #007bff;">차량 정보 팁</h4>
+        <p>
+          차량 정보 팁: 차량 번호와 제조 년도는 차량의 고유한 식별 정보로, 중고차 구매 시 매우 중요합니다. 차량 번호는 차량이 제조된 공장, 제조 연도 및 생산 순서를 나타내므로 차량의 원산지와 정확한 모델을 파악할 수 있습니다. 제조 년도는 차량의 연식과 기술 수준을 알려주며, 차량의 가치 평가에 중요한 요소입니다. 주행 거리는 차량의 사용 상태를 나타내며, 낮은 주행 거리는 일반적으로 차량의 상태가 양호하고 가치가 높음을 의미합니다. 차량 판매 시 이 정보를 정확히 확인하고 필요 시 전문가의 검증을 받는 것이 좋습니다.</p>
+      </div>
+    </div>
+    <div class="section-container">
+      <div class="form-section">
+        <h3 style="color: #28a745;">차량 세부사항</h3>
+        <div class="form-group">
+          <label for="brand">브랜드</label>
+          <select class="form-control" id="brand" name="brand" onchange="updateModels()">
+            <option>아우디</option>
+            <option>벤츠</option>
+            <option>페라리</option>
+            <option>람보르기니</option>
+            <option>포르쉐</option>
+            <option>기타</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="model">모델</label>
+          <select class="form-control" id="model" name="model">
+            <!-- 모델 옵션이 여기에 추가됩니다 -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="model-color">색깔</label>
+          <select class="form-control" id="model-color" name="color">
+            <!-- 색상 옵션이 여기에 추가됩니다 -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fuel_type">연료 종류</label>
+          <select class="form-control" id="fuel_type" name="fuelType">
+            <option>가솔린</option>
+            <option>경유</option>
+            <option>하이브리드</option>
+            <option>전기</option>
+          </select>
+        </div>
+      </div>
+      <div class="info-box">
+        <h4 style="color: #28a745;">차량 세부사항 팁</h4>
+        <p>브랜드, 모델, 색상, 연료 종류는 차량 선택 시 중요한 요소입니다. 브랜드는 차량의 성능과 안정성, 유지 비용 등에 영향을 미치며, 신뢰도와 선호도에 따라 결정됩니다. 모델은 차량의 특정 사양과 기능을 나타내어, 용도와 필요에 맞는 모델을 선택하는 것이 중요합니다. 색상은 외관상의 매력을 더하며, 특정 색상은 관리가 더 수월할 수 있습니다. 연료 종류는 차량의 연비와 환경 친화성에 영향을 미치므로, 연료 효율성과 주행 습관을 고려하여 적합한 연료 종류를 선택하세요. 이러한 요소를 고려하여 차량을 판매하면 더 높은 가치를 얻을 수 있습니다.</p>
+      </div>
+    </div>
+    <div class="section-container">
+      <div class="form-section">
+        <h3 style="color: #007bff;">가격 및 설명</h3>
+        <div class="form-group">
+          <label for="price">판매 가격</label>
+          <input type="text" class="form-control" id="price" name="price" placeholder="가격 입력">
+          <small class="form-error" id="error-price" style="color: red;">*가격은 0이상을 입력해야 합니다.</small>
+        </div>
+        <div class="form-group">
+          <label for="accident_history">사고 이력</label>
+          <select class="form-control" id="accident_history" name="accidentHistory">
+            <option value="N">무</option>
+            <option value="Y">유</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="description">추가 설명</label>
+          <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+          <small class="form-text text-muted">상세한 정보 추가</small>
+          <small class="form-error" id="error-description" style="color: red;">*상세 정보는 900글 이하로 작성해야 합니다.</small>
+        </div>
+      </div>
+      <div class="info-box">
+        <h4 style="color: #007bff;">가격 설정 팁</h4>
+        <p>적절한 가격 책정은 차량의 연식, 주행 거리, 전반적인 상태 및 시장 동향을 고려하여 이루어져야 합니다. 시장 분석을 통해 유사 차량의 가격 범위를 파악하고, 차량의 상태를 정확히 평가하여 가격을 결정하세요. 협상 과정에서 구매자와의 통신은 명확하고 직접적이어야 합니다. 또한, 판매 과정에서 필요한 모든 법적 요구 사항을 준수하십시오.
+          자세한 판매 전략과 협상 팁은 자동차 판매 전문가와 상의하는 것이 좋습니다.</p>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" style="margin-left: 25%" onclick="validateForm()">등록</button>
+  </form>
+  <!-- Confirm Modal -->
+  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmModalLabel">등록 확인</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          차량 등록을 확실히 하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary-2" onclick="submitForm()">등록</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --Footer start ------------ -->
+<div th:insert="~{footer :: footer-fragment}"></div>
+<!-- ---------------Footer end ------------ -->
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen">
+  <svg class="circular" width="48px" height="48px">
+    <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+  </svg>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="js/google-map.js"></script>
+<script src="js/main.js"></script>
+<script src="js/customHG2.js"></script>
+<script src="js/car_registration_HG.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+#head {
+    border: 1px solid black;
+    height: 120px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#head span {
+    font-size: 40px;
+    position: relative;
+    top: 24px;
+}
+
+#head span a {
+    color: black;
+}
+
+#body {
+    border: 1px solid black;
+    margin-bottom: 50px;
+    height: 380px;
+}
+
+table {
+    text-align: center;
+    width: 100%;
+}
+
+table a {
+    color: rgb(0, 0, 0);
+}
+
+tr {
+    width: 100%;
+    height: 80px;
+}
+
+.menu {
+    border-bottom: 1px solid black;
+    width: 100px;
+    height: 60px;
+    background-color: rgb(222, 222, 222);
+}
+
+.menu>td {
+    width: 20%;
+    color: black;
+}
+
+td {
+    width: 20%;
+}
+
+tr.hooover:hover {
+    background-color: rgb(195, 195, 195);
+}
+
+tr:hover td.hoover a {
+    color: beige;
+}
+
+.hover:hover {
+    background-color: rgb(195, 195, 195);
+}
+
+.hover:hover a {
+    color: white;
+}
+
+#foot {
+    /*border: 1px solid black;*/
+    height: 80px;
+    margin-bottom: 50px;
+}
+
+a:visited {
+    color: black;
+}
+
+/* 상단바 */
+.navbar-brand2 {
+    font-size: 2rem !important;
+    /* 잉카로고크*/
+    font-weight: 700;
+}
+
+@media (max-width: 991.98px) {
+    .ftco-navbar-light {
+        background: #000d1a !important;
+    }
+}
+
+.ftco-navbar-light .navbar-brand2 span {
+    color: #000339;
+}
+
+
+.ftco-degree-bg2 {
+    position: relative;
+}
+
+.ftco-degree-bg2:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -80px;
+    overflow: visible;
+    width: 100%;
+    height: 80px;
+    z-index: 0;
+    -webkit-transform: skewY(-4deg);
+    -moz-transform: skewY(-4deg);
+    -ms-transform: skewY(-4deg);
+    -o-transform: skewY(-4deg);
+    transform: skewY(-4deg);
+    background-color: #001F3F;
+}
+
+#nav-link4 {
+    display: inline-block;
+    text-align: center;
+    font-size: 1.1rem;
+    /*상단바메뉴 글씨크기 */
+    padding-top: 0.5rem;
+    padding-bottom: .1rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    color: #fff;
+    font-weight: 700;
+    /* 상단바메뉴 글씨 굵*/
+    opacity: 1 !important;
+    word-spacing: -1rem;
+
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item>.nav-link2 {
+    padding-top: 1rem;
+    display: inline-block;
+    padding-top: .1rem;
+    padding-bottom: 6rem;
+    text-align: right;
+    font-size: 0.7rem;
+    /*상단바메뉴 글씨크기 */
+    padding-right: 3rem;
+    color: #ffffff;
+    font-weight: 700;
+    /* 상단바메뉴 글씨 굵*/
+    margin-right: -0.6rem;
+    /* 간격줄이기 */
+    opacity: 1 !important;
+    /*불투명도 */
+
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item>.nav-link2:hover {
+    /* 로그인 로그아웃 상단메뉴 클릭시 색깔  변화주는것 */
+    color: #8B0000;
+}
+
+@media (max-width: 1000.98px) {
+    .ftco-navbar-light .navbar-nav>.nav-item>.nav-link2:hover {
+        padding-left: 0;
+        padding-right: 3rem;
+        padding-bottom: 6rem;
+        color: #8B0000;
+    }
+}
+
+#nav-link4:hover {
+    color: #00CED1;
+}
+
+@media (max-width: 991.98px) {
+    #nav-link4:hover {
+        padding-left: 0;
+        padding-right: 3rem;
+        padding-bottom: 6rem;
+        color: #00CED1;
+    }
+}

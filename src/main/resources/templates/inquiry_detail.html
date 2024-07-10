@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>INCAR</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/aos.css">
+    <link rel="stylesheet" href="/css/ionicons.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/css/jquery.timepicker.css">
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/icomoon.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/inquiry.css">
+    <style>
+        #inquiry_detail_subject {
+            width: 340px;
+            text-align: left;
+            margin-bottom: 0px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .inquiry_detail_content>.re_right li {
+            list-style: none;
+            text-align: left;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5fa;
+            color: #99a0b0;
+        }
+
+        .container {
+            padding: 20px;
+            /*padding-top: 10px;*/
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .board_zone_tit {
+            /* 문의하기 버튼 오른쪽 정렬*/
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px;
+            padding-bottom: 2px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .board_zone_tit button {
+            width: 80px;
+            height: 35px;
+            font-size: 15px;
+            border: 0;
+            outline: 1.5px #3b82f6 solid;
+            border-radius: 5px;
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .table-container {
+            display: flex;
+            /*flex-direction: column;*/
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+
+        .board_zone_cont {
+            width: 1160px;
+            border-collapse: collapse;
+            border: 1px solid #e8e8e8;
+            margin-top: 20px;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .custom-table th {
+            text-align: center;
+        }
+
+        .custom-table thead {
+            background-color: #f3f6ff;
+
+        }
+
+        .inquiry_regdate {
+            width: 10%;
+        }
+
+        .inquiry_subject {
+            width: 60%;
+        }
+
+        .inquiry_status {
+            width: 10%;
+        }
+
+        .inquiry_comment_regdate {
+            width: 10%;
+        }
+
+        .table-row .inquiry_regdate,
+        .table-row .inquiry_status,
+        .table-row .inquiry_comment_regdate {
+            text-align: center;
+        }
+
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .status.complete {
+            background-color: #d1fae5;
+            color: #10b981;
+        }
+
+        .status.cancelled {
+            background-color: #ffe4e6;
+            color: #f43f5e;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .archive-btn,
+        .download-btn {
+            background: none;
+            border: none;
+            color: #3b82f6;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .archive-btn:hover,
+        .download-btn:hover {
+            color: #2563eb;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .pagination-prev,
+        .pagination-next {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .pagination-prev:hover,
+        .pagination-next:hover {
+            color: #2563eb;
+        }
+
+        .pagination-numbers {
+            display: flex;
+            gap: 5px;
+        }
+
+        .page-number {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .page-number.active {
+            background-color: #e0f2fe;
+        }
+
+        .page-number:hover {
+            background-color: #bfdbfe;
+        }
+    </style>
+</head>
+
+<body>
+<section class="ftco-section">
+    <div class="container">
+        <!-- 숨겨진 필드에 inquiry_id 값을 설정 -->
+        <input type="hidden" id="inquiry_id" name="inquiry_id" th:value="${inquiry.inquiry_id}" />
+        <div class="content">
+            <div class="addition_zone">
+                <p></p>
+                <p><br></p>
+                <p></p>
+            </div>
+            <div class="board_zone_sec">
+                <div class="board_zone_tit">
+                    <h2>1:1문의</h2>
+                </div>
+                <div class="board_zone_cont">
+                    <div class="board_zone_view">
+                        <div class="board_view_tit">
+                            <!-- 제목 -->
+                            <h3 th:text="${inquiry.inquiry_title}">배송지 변경 문의 건</h3>
+                        </div>
+                        <div class="board_view_info">
+                                <span class="view_info_idip">
+                                    <strong th:text="${inquiry.user_id}">작성자 아이디</strong>
+                                </span>
+                            <span class="view_info_day">
+                                    <!-- 문의날짜 -->
+                                    <em th:text="${#dates.format(inquiry.inquiry_date, 'yyyy.MM.dd')}">2024.05.21</em>
+                                </span>
+                        </div>
+                        <!-- //board_view_info -->
+                        <div class="board_view_content">
+                            <div class="view_goods_select">
+                            </div>
+                            <div class="board_view_qa">
+                                <div class="view_question_box">
+                                    <strong class="view_question_tit">Q.</strong>
+                                    <div class="seem_cont">
+                                        <div style="margin:10px 0 10px 0" th:text="${inquiry.inquiry_content}">
+                                            <!-- 문의 내용 -->
+                                            안녕하세요.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="view_answer_box" th:if="${inquiry.response_content != null}">
+                                    <strong class="view_answer_tit">A.</strong>
+                                    <div class="view_answer_info">
+                                        <strong th:text="${inquiry.response_title}">문의글 답변 드립니다.</strong>
+                                        <span class="view_info_idip">
+                                                <strong th:text="${inquiry.response_id}">관리자</strong>
+                                            </span>
+                                        <span class="view_info_day">
+                                                <em th:text="${#dates.format(inquiry.response_date, 'yyyy.MM.dd')}">2024-05-22 11:56:55</em>
+                                            </span>
+                                    </div>
+                                    <div class="seem_cont">
+                                        <div style="margin:10px 0 10px 0" th:text="${inquiry.response_content}">
+                                            고객님 안녕하세요
+                                            저희 위팬을 이용해주셔서 감사드립니다.
+                                            주소 변경해드렸습니다. 주문내역에서 확인바랍니다.
+                                            감사합니다.<br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 댓글 다는게 여기있네.. -->
+                        <!--                        <div class="board_view_comment">-->
+                        <!--                            <div class="view_comment js_comment_area" data-bdid="qa" data-sno="27929">-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                    <div class="btn_right_box">
+                        <div class='inquiry_button_area'>
+                            <button id='inquiry_button' onclick="" class='inquiry_btn_del' th:if="${inquiry.inquiry_status == 'N'}">삭제</button>
+                            <button id='inquiry_button' onclick="" class='inquiry_btn_rep' th:if="${inquiry.inquiry_status == 'N'}">수정</button>
+                            <button id='inquiry_button' type="button" class="btn_board_list"
+                                    onclick="window.location.href='/mypage/inquiry_list'"><strong>목록</strong></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //board_zone_sec -->
+            <div class="addition_zone">
+                <p></p>
+                <p><br></p>
+                <p></p>
+            </div>
+            <!-- 레이어 호출시 딤처리 -->
+            <div id="layerDim" class="dn">&nbsp;</div>
+        </div>
+    </div>
+
+
+
+    <div class="board_zone_view">
+        <!-- 댓글 리스트  보여지는 부분-->
+        <div id="comments-section" class="container mb-5 mt-5">
+            <div id="comments-list"></div>
+        </div>
+
+        <!-- 댓글 작성 창 시작 -->
+        <div class="bg-light p-2">
+            <div class="d-flex flex-row align-items-start">
+                <label for="commentwritearea"><textarea id="commentwritearea"
+                                                        class="form-control ml-1 shadow-none textarea" placeholder="댓글을 남겨주세요."
+                                                        style="font-size: 14px;" data-comment-type="comment"></textarea></label>
+            </div>
+            <div class="mt-2 text-right">
+                <button class="btn btn-primary btn-sm shadow-none" type="button" onclick="addComment(null)">Post
+                    comment</button>
+            </div>
+        </div>
+        <!-- 댓글 작성 창 끝 -->
+
+
+        <!-- 문의 삭제 모달 팝업-->
+        <div class="modal_del">
+            <div class="modal_popup_del">
+                <!-- 삭제 버튼 클릭시에만 보여져야함 -->
+                <form action="#" class='inquiry_del_form' method='post' onsubmit="handleDeleteinquiry(event)">
+                    <!-- 숨겨진 필드에 inquiry_id 값을 설정 -->
+                    <input type="hidden" id="inquiry_id" name="inquiry_id" th:value="${inquiry.inquiry_id}" />
+                    <span>삭제를 계속 진행하실 경우, </span><br>
+                    <span>계정 비밀번호를 입력하세요.</span><br><br>
+                    비밀번호 : <input type="password" id="delete_pwd" name="delete_pwd">
+                    <!-- 비밀번호 일치할 시에만 삭제되도록 해야함 -->
+                    <input type="submit" value="확인">
+                    <input type="button" value="닫기" class="del_close_btn">
+                </form>
+            </div>
+        </div>
+
+        <!-- 문의 수정 모달창 -->
+        <div class="modal" id="editModal">
+            <div class="modal_popup">
+                <!-- 수정 버튼 클릭시에만 보여져야함 -->
+                <form action="#" method="post" name='inquiryform' onsubmit="submitEditinquiryForm(event)"
+                      class='inquiry_rep_form' id="editinquiryForm">
+
+                    <!-- 숨겨진 필드에 inquiry_id 값을 설정 -->
+                    <input type="hidden" id="inquiry_id" name="inquiry_id" th:value="${inquiry.inquiry_id}" />
+                    <table>
+                        <tr>
+                            <td>
+                                <h4 style='margin-bottom: 7px; margin-top:10px'>문의 글쓰기</h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="inquiryheader" style='width: 700px;'>
+                                <label for="inquiryheader_area">
+                                    <input required class="inquiryheader_area" type="text" placeholder="제목을 입력하세요"
+                                           name="inquirytitle" id='inquiryheader_area'
+                                           style='width: 700px; height:40px' maxlength='20'>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="inquiry_txt" style='height:300px; margin-bottom:0;'>
+                                        <textarea required class="summernote" name="inquiry_body" id='inquiry_txt'
+                                                  maxlength='500' placeholder=' 500자 이내로 기재해주세요.'></textarea>
+                                    <script>
+                                        document.getElementById("inquiry_txt").addEventListener("focus", () => {
+                                            document.getElementById("inquiry_txt").style.padding = "2px 2px 2px 10px"
+                                            document.getElementById("inquiry_txt").placeholder = '';
+                                        });
+
+                                        document.getElementById("inquiry_txt").addEventListener("blur", () => {
+                                            document.getElementById("inquiry_txt").style.padding = "2px 2px 2px 10px";
+                                            document.getElementById("inquiry_txt").placeholder = '500자 이내로 기재해주세요.';
+                                        });
+                                    </script>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="add_area" style="padding:0 15px;">
+                                    <p class="txt_count"
+                                       style="right:20px; bottom:15px; color:black; font-size:13px; text-align:right">
+                                        <span id="chk_byte">0</span>/<span class="maximum">500</span>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <script>
+                            /** 텍스트 영역(textarea) */
+                            let textarea1 = document.querySelector('.summernote');
+
+                            /** 입력 중인 문자 수 */
+                            let string_num = document.querySelector('#chk_byte');
+
+                            // 텍스트를 입력할 때마다 onKeyUp()을 실행
+                            textarea1.addEventListener('keyup', onKeyUp);
+                            function onKeyUp() {
+                                // 입력된 텍스트
+                                const inputText = textarea1.value;
+                                // 문자 수를 반영
+                                string_num.innerText = inputText.length;
+                            }
+                        </script>
+                        <tr style='text-align:center;'>
+                            <td class='inquirysub-btn' style='color: #3b82f6;'>
+                                <input type="submit" value="등록" onclick="">
+                                <input type="button" value="닫기" class="close_btn">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/jquery.waypoints.min.js"></script>
+<script src="/js/jquery.stellar.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/jquery.animateNumber.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.timepicker.min.js"></script>
+<script src="/js/scrollax.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/inquiry.js"></script>
+</body>
+
+</html>

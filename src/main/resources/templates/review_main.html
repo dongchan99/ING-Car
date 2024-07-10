@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>INGCAR</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/css/magnific-popup.css">
+  <link rel="stylesheet" href="/css/aos.css">
+  <link rel="stylesheet" href="/css/ionicons.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/css/jquery.timepicker.css">
+  <link rel="stylesheet" href="/css/flaticon.css">
+  <link rel="stylesheet" href="/css/icomoon.css">
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/jihee.css" rel="stylesheet">
+  <link href="/css/custom_ha.css" rel="stylesheet">
+  <style>
+    select {
+      width: 100px;
+      height: 33px;
+    }
+
+
+  </style>
+</head>
+<body>
+<!-- 사용자 ID를 JavaScript로 전달 -->
+<!-- --------nav 상단바 start---------------------------- -->
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
+  <div class="container">
+    <a class="navbar-brand2" th:href="@{/}" style="color: #001F3F;">ING<span style="color: #00CED1;">Car</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+            aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oi oi-menu"></span> Menu
+    </button>
+    <div class="collapse navbar-collapse" id="ftco-nav" style="white-space: nowrap; width: 80%; height: 100%;">
+      <ul class="navbar-nav">
+        <!-- ml-auto -->
+        <li class="nav-item"><li class="nav-item"><a th:href="@{/car_registration}" class="nav-link" id="nav-link4">내차팔기</a></li>
+        <li class="nav-item"><a th:href="@{/car_list}" class="nav-link" id="nav-link4">내차사기</a></li>
+        <li class="nav-item"><a th:href="@{/review_main}" class="nav-link" id="nav-link4">후기게시판</a></li>
+        <li class="nav-item"><a th:href="@{/inform}" class="nav-link" id="nav-link4">공지게시판</a></li>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav ml-auto" style="white-space: nowrap;">
+        <li class="nav-item" th:if="${session.user_session == null}">
+          <a href="/loginPage" class="nav-link5">login</a>
+        </li>
+        <li class="nav-item" th:if="${session.user_session != null}">
+          <a href="/logout" class="nav-link5">logout</a>
+        </li>
+        <li class="nav-item"> <a href="/mypage" class="nav-link5">Mypage </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- --------nav 상단바 end---------------------------- -->
+<script th:inline="javascript">
+  let userId = /*[[${userId}]]*/ 'defaultUserId'; // 사용자 ID
+</script>
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/images/bg_3.jpg');"
+         data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+      <div class="col-md-9 ftco-animate pb-5">
+        <p class="breadcrumbs"><span class="mr-2"><a th:href="@{/}">Home <i
+                class="ion-ios-arrow-forward"></i></a></span> <span>Review_Board <i
+                class="ion-ios-arrow-forward"></i></span></p>
+        <h1 class="mb-3 bread">REVIEW</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="ftco-section contact-section" >
+  <div class="container">
+    <div class="row d-flex contact-info">
+      <div class="col-md-12">
+        <ul class="article-movie-sub" style='list-style: none;' >
+          <!-- 데이터  반복-->
+          <li th:each="review, iterStat : ${result_reviewlist}">
+            <div class="card_area">
+              <div class="con">
+                <div class="con_top">
+                  <!-- Use Thymeleaf expressions to bind review data -->
+                  <div class='review_article_inner'>
+                    <div class='img_thumb_area'>
+                      <img th:src="@{|/images/${review.getModel()}(1).jpg|}" alt="review_thumbnail">
+                    </div>
+                    <div class='review_txt_body' style='height: 180px;'>
+                      <a th:href="@{/review_detail(log_id=${review.log_id}, board_subject=${review.board_subject})}" class="tit">
+                        <div class='review_txt_tit'>
+                          <h3 th:text="${review.getBoard_subject()}" th:attr="onclick='handleReviewClick(' + ${review.log_id} + ',' + ${review.board_subject} + ')'">제목1</h3>
+                        </div>
+                      </a>
+                      <div class='review_txt_area'>
+                        <a th:href="@{/review_detail(log_id=${review.log_id}, board_subject=${review.board_subject}, board_count=${review.board_count}, board_regdate=${review.board_regdate}, board_star=${review.board_star})}"
+                           class="txt" style='color: black;' th:text="${review.board_content}" th:attr="onclick='handleReviewClick(' + ${review.log_id} + ',' + ${review.board_subject} + ')'">
+                          내용미리보기</a>
+                      </div>
+                    </div>
+                    <div class='review_writer_info_area'>
+                      <div class='review_writer_info'>
+                        <ul>
+<!--                          <li th:text="${review.getLog_id()}">작성자아이디</li>-->
+                          <li th:text="${review.getBuyer()}">작성자아이디</li>
+                          <li th:text="${review.getBoard_updatedate()}">yyyy-mm-dd</li>
+                          <li>조회 <span th:text="${review.getBoard_count()}">4</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="con_bottom">
+                  <div class="review_user_info">
+                    <div class="date_num">
+                      <div class="like_area">
+                        <div class="u_likeit_list_module">
+                          <!-- 좋아요 -->
+                          <div th:if="${listen_to_my_heart_beat.get(iterStat.index)=='true'}">
+                          <span class="u_likeit_list_btn off">
+                          <span class="u_ico">
+                            <button th:id="'like-button' + ${review.log_id}" class="like-button" th:onclick="'toggleLike(' + ${review.log_id} + ')'" style="color:black">♡</button>
+                          </span>
+                            <em class="u_cnt num-recomm" th:text="${review.getBoard_like()}" value="likeCount" th:id="'likeCount-' + ${review.log_id}">0</em>
+                            <script>
+                              function toggleLike(log_id){
+                                console.log("1 " + log_id);
+
+                                var likeButton = document.getElementById('like-button'+log_id);
+                                var color='red';
+
+                                if(likeButton.style['color'] === 'red'){
+                                  console.log('change to black');
+                                  likeButton.style.color = 'black';
+                                } else {
+                                  console.log('change to red');
+                                  likeButton.style.color = 'red';
+                                  color='black';
+                                }
+                                $.ajax({
+                                  type: "POST",
+                                  url: "/heart_beat",
+                                  data: {
+                                    log_id: log_id,
+                                    color: color
+                                  },
+                                  success: function(response, status, xhr) {
+                                    // 요청이 성공했을 때 실행되는 코드
+                                    alert('listen to my heart beat');
+                                    if (response === 'added') {
+                                      alert('added');
+                                      let board_like = xhr.getResponseHeader("board_like");
+                                      console.log('log_id : ' + log_id);
+                                      document.getElementById("likeCount-" + log_id).innerText = board_like;
+                                    }
+                                    if (response === 'removed') {
+                                      alert('removed');
+                                      let board_like = xhr.getResponseHeader("board_like");
+                                      console.log('log_id : ' + log_id);
+                                      document.getElementById("likeCount-" + log_id).innerText = board_like;
+                                    }
+                                  },
+                                  error: function(xhr, status, error) {
+                                    // 요청이 실패했을 때 실행되는 코드
+                                    console.error("리뷰 제출에 실패했습니다:", error);
+                                  }
+                                });
+                              }
+                            </script>
+                          </span>
+                          </div>
+
+                          <div th:if="${listen_to_my_heart_beat.get(iterStat.index)=='false'}">
+                                                        <span class="u_likeit_list_btn off">
+                                                       <span class="u_ico">
+                                                         <button th:id="'like-button' + ${review.log_id}" class="like-button" th:onclick="'toggleLike(' + ${review.log_id} + ')'" style="color:red">♡</button>
+                                                       </span>
+                                                       <em class="u_cnt num-recomm" th:text="${review.getBoard_like()}" value="likeCount" th:id="'likeCount-' + ${review.log_id}">0</em>
+                                                       <script>
+                                                           function toggleLike(log_id){
+                                                             console.log("1 " + log_id);
+
+                                                             var likeButton = document.getElementById('like-button'+log_id);
+                                                             var color='red';
+
+                                                             if(likeButton.style['color'] === 'red'){
+                                                               console.log('change to black');
+                                                               likeButton.style.color = 'black';
+                                                             } else {
+                                                               console.log('change to red');
+                                                               likeButton.style.color = 'red';
+                                                               color='black';
+                                                             }
+
+                                                             $.ajax({
+                                                               type: "POST",
+                                                               url: "/heart_beat",
+                                                               data: {
+                                                                 log_id: log_id,
+                                                                 color: color
+                                                               },
+                                                               success: function(response, status, xhr) {
+                                                                 // 요청이 성공했을 때 실행되는 코드
+                                                                 alert('listen to my heart beat');
+                                                                 if (response === 'added') {
+                                                                   alert('added');
+                                                                   let board_like = xhr.getResponseHeader("board_like");
+                                                                   console.log('log_id : ' + log_id);
+                                                                   document.getElementById("likeCount-" + log_id).innerText = board_like;
+                                                                 }
+                                                                 if (response === 'removed') {
+                                                                   alert('removed');
+                                                                   let board_like = xhr.getResponseHeader("board_like");
+                                                                   console.log('log_id : ' + log_id);
+                                                                   document.getElementById("likeCount-" + log_id).innerText = board_like;
+                                                                 }
+                                                               },
+                                                               error: function(xhr, status, error) {
+                                                                 // 요청이 실패했을 때 실행되는 코드
+                                                                 console.error("리뷰 제출에 실패했습니다:", error);
+                                                               }
+                                                             });
+                                                           }
+                                                       </script>
+                                                    </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="jb-division-line" style='border-color: #dee2e6;'></div> <!-- 구분선 -->
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<div class='review_paging_search_area'>
+  <div class='review_paging'>
+    <div class="row mt-5">
+      <div class="col text-center">
+        <div class="block-27">
+          <ul>
+            <!-- Previous page link : 현재 페이지가 1보다 큰 경우에만 이전 페이지 링크를 표시합니다. 페이지가 1이면 이전 페이지 링크가 표시되지 않습니다. -->
+            <li th:if="${currentPage > 1}">
+              <a th:href="@{/review_main(page=${currentPage - 1})}">&lt;</a>
+            </li>
+            <!-- Page number links -->
+            <li th:each="i : ${#numbers.sequence(1, totalPages)}">
+              <a th:if="${i != currentPage}" th:href="@{/review_main(page=${i})}" th:text="${i}">1</a>
+              <span th:if="${i == currentPage}" th:text="${i}" class="active">1</span>
+            </li>
+            <!-- Next page link -->
+            <li th:if="${currentPage < totalPages}">
+              <a th:href="@{/review_main(page=${currentPage + 1})}">&gt;</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 제목으로 후기 검색 -->
+<div class=' review_search' style="margin-bottom: 20px;">
+  <form name="review_search_form" th:action="@{/review_search}" method="get">
+    <label>
+      <select name="review_search">
+        <option value="review_subject">제목</option>
+        <option value="car_model">차량모델명</option>
+      </select>
+    </label>
+    <label for="review_searchtext"></label><input class="review_searchtext" id="review_searchtext" type="text" name="reviewsearchtext" size="25">
+    <!--        <input type="submit" value="검색">-->
+    <button type="submit" value="검색">검색</button>
+  </form>
+</div>
+
+
+<!-- --Footer start ------------ -->
+<div th:insert="~{footer :: footer-fragment}"></div>
+<!-- ---------------Footer end ------------ -->
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+  <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+  <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+          stroke="#F96D00" />
+</svg></div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/jquery.waypoints.min.js"></script>
+<script src="/js/jquery.stellar.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/jquery.animateNumber.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.timepicker.min.js"></script>
+<script src="/js/scrollax.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/custom_ha.js"></script>
+</body>
+</html>

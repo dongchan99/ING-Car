@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+  관리자 화면 내의 '문의' 데이터 관리를 위한 화면
+
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root {
+            --white: #fff;
+            --blue: #4b84fe;
+            --colorDark: #1b253d;
+            --colorLight: #99a0b0;
+            --red: #fa5b67;
+            --yellow: #ffbb09;
+            --bg: #f5f5fa;
+            --bgDark: #ede8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            color: var(--colorLight);
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg);
+            font-size: 16px;
+            line-height: 120%;
+            font-family: Open Sans, Helvetica, sans-serif;
+        }
+
+        .dashboard {
+            display: grid;
+            width: 100%;
+            height: 100%;
+            grid-gap: 0;
+            grid-template-columns: 300px auto;
+            grid-template-rows: 80px auto;
+            grid-template-areas: 'menu search' 'menu content';
+        }
+
+        .search-wrap {
+            grid-area: search;
+            background: var(--white);
+            border-bottom: 1px solid var(--bgDark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3em;
+        }
+
+        .search {
+            height: 40px;
+        }
+
+        .search label {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .search label svg {
+            display: block;
+        }
+
+        .search label svg path,
+        .search label svg circle {
+            fill: lighten(var(--colorLight), 10%);
+            transition: fill 0.15s ease;
+        }
+
+        .search label input {
+            display: block;
+            padding-left: 1em;
+            height: 100%;
+            margin: 0;
+            border: 0;
+        }
+
+        .search label input:focus {
+            background: var(--bg);
+        }
+
+        .search label:hover svg path,
+        .search label:hover svg circle {
+            fill: lighten(var(--colorDark), 10%);
+        }
+
+        .user-actions button {
+            border: 0;
+            background: none;
+            width: 32px;
+            height: 32px;
+            margin: 0;
+            padding: 0;
+            margin-left: 0.5em;
+        }
+
+        .user-actions button svg {
+            position: relative;
+            top: 2px;
+        }
+
+        .user-actions button svg path,
+        .user-actions button svg circle {
+            fill: lighten(var(--colorLight), 10%);
+            transition: fill 0.15s ease;
+        }
+
+        .user-actions button:hover svg path,
+        .user-actions button:hover svg circle {
+            fill: lighten(var(--colorDark), 10%);
+        }
+
+        .menu-wrap {
+            grid-area: menu;
+            padding-bottom: 3em;
+            overflow: auto;
+            background: var(--white);
+            border-right: 1px solid var(--bgDark);
+        }
+
+        .user {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0;
+            padding: 0 3em;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        figcaption {
+            margin: 0;
+            padding: 0 0 0 1em;
+            color: var(--colorDark);
+            font-weight: 700;
+            font-size: 0.875em;
+            line-height: 100%;
+        }
+
+        nav {
+            display: block;
+            padding: 0 3em;
+        }
+
+        section {
+            display: block;
+            padding: 3em 0 0;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 0.875em;
+            text-transform: uppercase;
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        ul {
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            display: block;
+            padding: 0;
+            margin: 1em 0 0;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: var(--colorLight);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875em;
+            transition: color 0.15s ease;
+        }
+
+        a svg {
+            display: block;
+            margin-right: 1em;
+        }
+
+        a svg path,
+        a svg circle {
+            fill: lighten(var(--colorLight), 10%);
+            transition: fill 0.15s ease;
+        }
+
+        a:hover {
+            color: var(--colorDark);
+        }
+
+        a:hover svg path,
+        a:hover svg circle {
+            fill: lighten(var(--colorDark), 10%);
+        }
+
+        a.active {
+            color: var(--blue);
+        }
+
+        a.active svg path,
+        a.active svg circle {
+            fill: var(--blue);
+        }
+
+        .content-wrap {
+            grid-area: content;
+            padding: 3em;
+            overflow: auto;
+        }
+
+        .content-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .content-head h1 {
+            font-size: 1.375em;
+            line-height: 100%;
+            color: var(--colorDark);
+            font-weight: 500;
+            margin: 0;
+            padding: 0;
+        }
+
+        .action button {
+            border: 0;
+            background: var(--blue);
+            color: var(--white);
+            width: auto;
+            height: 3.5em;
+            padding: 0 2.25em;
+            border-radius: 3.5em;
+            font-size: 1em;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: background-color 0.15s ease;
+        }
+
+        .action button:hover {
+            background-color: darken(var(--blue), 10%);
+        }
+
+        .action button:active {
+            background-color: darken(var(--blue), 20%);
+            transition: none;
+        }
+
+        .info-boxes {
+            padding: 3em 0 2em;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-gap: 2em;
+        }
+
+        .info-box {
+            background: var(--white);
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 3em;
+            border: 1px solid var(--bgDark);
+            border-radius: 5px;
+        }
+
+        .box-icon svg {
+            display: block;
+            width: 48px;
+            height: 48px;
+        }
+
+        .box-icon svg path,
+        .box-icon svg circle {
+            fill: var(--colorLight);
+        }
+
+        .box-content {
+            padding-left: 1.25em;
+            white-space: nowrap;
+        }
+
+        .box-content .big {
+            display: block;
+            font-size: 2em;
+            line-height: 150%;
+            color: var(--colorDark);
+        }
+
+        .info-box.active svg circle,
+        .info-box.active svg path {
+            fill: var(--blue);
+        }
+
+        .person-boxes {
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-gap: 2em;
+        }
+
+        .person-box {
+            background: var(--white);
+            height: 320px;
+            text-align: center;
+            padding: 3em;
+            border: 1px solid var(--bgDark);
+            border-radius: 5px;
+        }
+
+        .person-box:nth-child(2n) .box-avatar .no-name {
+            background: var(--blue);
+        }
+
+        .person-box:nth-child(5n) .box-avatar .no-name {
+            background: var(--yellow);
+        }
+
+        .box-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0px auto;
+            overflow: hidden;
+        }
+
+        .box-avatar img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .box-avatar .no-name {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            font-size: 1.5em;
+            font-weight: 600;
+            text-transform: uppercase;
+            width: 100%;
+            height: 100%;
+            background: var(--red);
+        }
+
+        .box-bio {
+            white-space: nowrap;
+        }
+
+        .box-bio .bio-name {
+            margin: 2em 0 0.75em;
+            color: var(--colorDark);
+            font-size: 1em;
+            font-weight: 700;
+            line-height: 100%;
+        }
+
+        .box-bio .bio-position {
+            margin: 0;
+            font-size: 0.875em;
+            line-height: 100%;
+        }
+
+        .box-actions {
+            margin-top: 1.25em;
+            padding-top: 1.25em;
+            width: 100%;
+            border-top: 1px solid var(--bgDark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .box-actions button {
+            border: 0;
+            background: none;
+            width: 32px;
+            height: 32px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .box-actions button svg {
+            position: relative;
+            top: 2px;
+        }
+
+        .box-actions button svg path,
+        .box-actions button svg circle {
+            fill: lighten(var(--colorLight), 10%);
+            transition: fill 0.15s ease;
+        }
+
+        .box-actions button:hover svg path,
+        .box-actions button:hover svg circle {
+            fill: lighten(var(--colorDark), 10%);
+        }
+
+        /* ========================================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5fa;
+            color: #99a0b0;
+        }
+
+        .table-section {
+            background-color: #f5f5fa;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            border: 1px solid #ede8f0;
+        }
+
+        .custom-table thead {
+            background-color: #4b84fe;
+            color: #fff;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            text-align: center;
+            padding: 12px;
+            border: 1px solid #e8e8e8;
+        }
+
+        .custom-table tbody tr:nth-child(odd) {
+            background-color: #f3f6ff;
+        }
+
+        .custom-table tbody tr:nth-child(even) {
+            background-color: #fff;
+        }
+
+        .sign-up-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid #4b84fe;
+            color: #4b84fe;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .sign-up-btn:hover {
+            background-color: #4b84fe;
+            color: #fff;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .status.paid {
+
+            background-color: #d1fae5;
+            color: #10b981;
+        }
+
+        .status.cancelled {
+
+            background-color: #ffe4e6;
+            color: #f43f5e;
+        }
+
+        /*  페이징*/
+        .inquiry_paging_search_area {
+            padding: 30px 0 30px;
+        }
+
+        .inquiry_paging_search_area,
+        .inquiry_paging {
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .inquiry_paging>a {
+            color: black;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .pagination-prev,
+        .pagination-next {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .pagination-prev:hover,
+        .pagination-next:hover {
+            color: #2563eb;
+        }
+
+        .pagination-numbers {
+            display: flex;
+            gap: 5px;
+        }
+
+        .page-number {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .page-number.active {
+
+            background-color: #e0f2fe;
+            color: #3b82f6;
+        }
+
+        .page-number:hover {
+            background-color: #bfdbfe;
+            color: #3b82f6;
+        }
+
+        .sign-up-btn.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+<div class="dashboard">
+    <aside class="search-wrap">
+        <!--    검색 폼-->
+        <form id="inquirySearchForm" action="/admin/inquiry/search" method="get">
+            <div class="search">
+                <!--      label  스타일에서 border 는 빼세요 -->
+                <label for="search" style=' border: 1px solid black;'>
+                    <!--  검색 키워드 -->
+                    <select name="categorie" id="categorie" style='margin-right: 30px;'>
+                        <option value="search_title">Title</option>
+                        <option value="search_content">Content</option>
+                    </select>
+                    <input type="text" id="search" name="keyword" style='width: 200px;'>
+                    <button type="submit" style="background: none; border: none; cursor: pointer; margin-left:10px">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path
+                                    d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z" />
+                        </svg>
+                    </button>
+                </label>
+            </div>
+        </form>
+        <!--    검색 폼-->
+        <div class="user-actions">
+
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                            d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z" />
+                    <path d="M11 2h2v10h-2z" />
+                </svg>
+            </button>
+        </div>
+    </aside>
+    <header class="menu-wrap">
+        <figure class="user">
+            <div class="user-avatar">
+                <img src="https://avatar.iran.liara.run/public/boy">
+            </div>
+            <figcaption>
+                Amanda King
+            </figcaption>
+        </figure>
+
+        <nav>
+            <section class="dicover">
+                <h3>회원</h3>
+
+                <ul>
+                    <li>
+                        <a href="/admin/users">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path
+                                        d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z" />
+                            </svg>
+                            검색
+                        </a>
+                    </li>
+
+                </ul>
+            </section>
+
+            <section class="tools">
+                <h3>상품</h3>
+
+                <ul>
+                    <li>
+                        <a href="/admin/product">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path
+                                        d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z" />
+                            </svg>
+                            검색
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/producting">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M3 12l18 0m-6-6l6 6-6 6" />
+                            </svg>
+                            거래 진행중
+                        </a>
+                    </li>
+
+                </ul>
+            </section>
+
+            <!--       게시판-->
+            <section class="dicover">
+                <h3>게시판</h3>
+                <ul>
+                    <li>
+                        <a href="/admin/inform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path
+                                        d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm-1-13h2v8h-2zm0 10h2v2h-2z" />
+                            </svg>
+                            공지
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/inquiry">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path
+                                        d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm-1-6h2v2h-2zm1-10c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 1-1 1.5-1.75 2.25S11 12 11 13h2c0-.5.25-1 1-1.75S15 9.5 15 8c0-2.21-1.79-4-4-4z" />
+                            </svg>
+                            문의
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/review">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path
+                                        d="M12 17.27L18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27z" />
+                            </svg>
+                            후기
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+    </header>
+    <!-- 좌측메뉴 끝 -->
+
+
+    <!--  메인 데이터 나오는 화면 -->
+    <main class="content-wrap">
+        <header class="content-head">
+            <h1>INQUIRY LIST</h1>
+        </header>
+        <div class="content">
+            <section class="table-section" style="position: relative; top: 30px; padding-top: 0; padding-left: 0; padding-right: 0; padding-bottom: 0;">
+                <div class="container">
+                    <div class="table-wrapper">
+                        <table class="custom-table">
+                            <thead>
+                            <tr>
+                                <th>문의코드</th>
+                                <th>작성자</th>
+                                <th>제목</th>
+                                <th>내용</th>
+                                <th>등록일자</th>
+                                <th>상태</th>
+                                <th>UPDATE</th>
+                                <th>DELETE</th>
+                            </tr>
+                            </thead>
+                            <tbody class="faqdatarow" id="faqDataContainer">
+                            <!-- 타임리프를 사용하여 데이터 렌더링 -->
+                            <tr th:each="inquiry : ${inquiries}">
+                                <td th:text="${inquiry.inquiry_id}">1</td>
+                                <td th:text="${inquiry.user_id}">아이디</td>
+                                <td th:text="${inquiry.inquiry_title}">제목</td>
+                                <td th:text="${#strings.abbreviate(inquiry.inquiry_content, 20)}">내용</td>
+                                <td th:text="${#dates.format(inquiry.inquiry_date, 'yyyy-MM-dd')}">2022.02.02</td>
+                                <td ><span th:text="${inquiry.inquiry_status == 'N' ? '준비중' : '답변완료'}"
+                                           th:classappend="${inquiry.inquiry_status == 'N' ? 'cancelled' : 'paid'}" class="status">준비중</span></td>
+                                <td>
+                                    <a href="javascript:void(0)"
+                                       th:attr="data-id=${inquiry.inquiry_id}"
+                                       th:onclick="'redirectToInquiryDetail(' + ${inquiry.inquiry_id} + ')'"
+                                       class="sign-up-btn">UPDATE</a>
+                                </td>
+                                <td><a href="javascript:void(0)" class="sign-up-btn" th:onclick="'deleteInquiry(' + ${inquiry.inquiry_id} + ')'">DELETE</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!--      페이징 -->
+            <section id="foot">
+                <div class='review_paging_search_area'>
+                    <div class='review_paging'>
+                        <div class="row mt-5">
+                            <div class="col text-center">
+                                <div class="block-27">
+                                    <ul>
+                                        <!-- Previous page link : 현재 페이지가 1보다 큰 경우에만 이전 페이지 링크를 표시합니다. 페이지가 1이면 이전 페이지 링크가 표시되지 않습니다. -->
+                                        <li th:if="${currentPage > 1}">
+                                            <a th:href="@{/admin/product(page=${currentPage - 1})}">&lt;</a>
+                                        </li>
+
+                                        <!-- Previous group link : 현재 그룹이 첫 번째 그룹이 아닌 경우 이전 그룹 링크를 표시합니다. -->
+                                        <li th:if="${startPage > 1}">
+                                            <a th:href="@{/admin/product(page=${startPage - 1})}">...</a>
+                                        </li>
+
+                                        <!-- Page number links -->
+                                        <li th:each="i : ${#numbers.sequence(startPage, endPage)}">
+                                            <a th:if="${i != currentPage}" th:href="@{/admin/product(page=${i})}" th:text="${i}">1</a>
+                                            <span th:if="${i == currentPage}" th:text="${i}" class="active">1</span>
+                                        </li>
+
+                                        <!-- Next group link : 현재 그룹이 마지막 그룹이 아닌 경우 다음 그룹 링크를 표시합니다. -->
+                                        <li th:if="${endPage < totalPages}">
+                                            <a th:href="@{/admin/product(page=${endPage + 1})}">...</a>
+                                        </li>
+
+                                        <!-- Next page link -->
+                                        <li th:if="${currentPage < totalPages}">
+                                            <a th:href="@{/admin/product(page=${currentPage + 1})}">&gt;</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <script>
+                function redirectToInquiryDetail(inquiry_id) {
+                    window.location.href = '/admin/inquiry/comment?inquiry_id=' + inquiry_id;
+                }
+
+
+                // 문의 글 삭제
+                function deleteInquiry(inquiry_id) {
+                    if (confirm('정말로 이 문의를 삭제하시겠습니까?')) {
+                        fetch(`/admin/inquiry/delete`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ inquiry_id: inquiry_id })
+                        }).then(response => {
+                            if (response.ok) {
+                                alert('삭제되었습니다.');
+                                location.reload(); // 페이지 새로고침하여 삭제 결과 반영
+                            } else {
+                                alert('삭제에 실패했습니다.');
+                            }
+                        }).catch(error => {
+                            console.error('Error:', error);
+                            alert('삭제 중 오류가 발생했습니다.');
+                        });
+                    }
+                }
+
+
+            </script>
+        </div>
+    </main>
+</div>
+</body>
+</html>

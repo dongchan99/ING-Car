@@ -1,0 +1,133 @@
+/* login-success.html */
+.success-text {
+    font-size: 30px;
+    color: black;
+
+}
+
+
+/* car-single.html */
+.sub-content {
+    max-height: 300px;
+    /* 최대 높이 설정 */
+    overflow-y: auto;
+    /* 내용이 최대 높이를 초과할 경우 세로 스크롤 표시 */
+    height: 300px;
+    /* 내용이 없어도 최대 높이 고정 */
+
+}
+
+.btn-custom-width {
+    padding-left: 30px;
+    /* 왼쪽 여백을 추가합니다. */
+    padding-right: 30px;
+    /* 오른쪽 여백을 추가합니다. */
+}
+
+.sub-content {
+    font-size: 16px;
+    /* 폰트 크기 조절 */
+    line-height: 1.6;
+    /* 줄간격 조절 */
+    color: #333;
+    /* 텍스트 색상 설정 */
+    margin-bottom: 20px;
+    /* 하단 여백 설정 */
+}
+
+.pills .seller {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.pills .seller .user-img {
+    width: 80px;
+    height: 80px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.pills .seller .desc {
+    width: calc(100% - 100px);
+    margin-left: 30px;
+}
+
+.pills .seller .desc h4 {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.pills .seller .desc h4 span {
+    width: 49%;
+    display: inline-block;
+}
+
+.pills .seller .desc h4 span:first-child {
+    font-size: 16px;
+}
+
+.pills .seller .desc h4 span:last-child {
+    font-size: 13px;
+    color: #b3b3b3;
+}
+
+.pills .seller .desc .star {
+    width: 100%;
+}
+
+.pills .seller .desc .star span {
+    width: 49%;
+    display: inline-block;
+}
+
+.pills .seller .desc .star i {
+    color: #01d28e;
+}
+
+.pills .seller .desc .star .reply {
+    padding: 2px 10px;
+    background: #f0f0f0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.pills .seller .desc .star .reply i {
+    color: gray;
+    font-size: 12px;
+}
+
+
+/* login.html */
+.hide{
+    display:none;
+    
+}
+.warning{
+    color:red;
+    font-size:15px;
+}
+
+.cart-btn {
+    border: none; /* 버튼 테두리 제거 */
+    background: none; /* 버튼 배경 제거 */
+    padding: 0; /* 패딩 제거 */
+    cursor: pointer; /* 포인터 커서 설정 */
+    color: #000; /* 버튼 텍스트 색상 지정 */
+}
+
+.cart-btn i {
+    display: inline-block; /* 하트 아이콘을 가로로 배치 */
+}
+
+
+.wish-list-text {
+    margin-left: 5px; /* 왼쪽 여백 추가 */
+}
+
+.cart-btn:focus {
+    outline: none; /* 포커스 효과 제거 */
+}

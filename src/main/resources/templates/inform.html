@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>잉카 공지사항</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jihee.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/custom_ha.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .modal-header {
+            background-color: #007bff;
+            color: white;
+        }
+        .modal-title {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-custom-width {
+            width: auto;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body style="background-color: #001F3F">
+<script>
+    history.replaceState({}, null, location.pathname);
+</script>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
+    <div class="container">
+        <a class="navbar-brand2" th:href="@{/}" style="color: #001F3F;">ING<span style="color: #00CED1;">Car</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#ftco-nav" aria-controls="ftco-nav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav" style="white-space: nowrap; width: 80%; height: 100%;">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a th:href="@{/car_registration}" class="nav-link" id="nav-link4">내차팔기</a></li>
+                <li class="nav-item"><a th:href="@{/car_list}" class="nav-link" id="nav-link4">내차사기</a></li>
+                <li class="nav-item"><a th:href="@{/review_main}" class="nav-link" id="nav-link4">후기게시판</a></li>
+                <li class="nav-item"><a th:href="@{/inform}" class="nav-link" id="nav-link4">공지게시판</a></li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto" style="white-space: nowrap;">
+                <li class="nav-item" th:if="${session.user_session == null}">
+                    <a href="/loginPage" class="nav-link5">login</a>
+                </li>
+                <li class="nav-item" th:if="${session.user_session != null}">
+                    <a href="/logout" class="nav-link5">logout</a>
+                </li>
+                <li class="nav-item"> <a href="/mypage" class="nav-link5">Mypage </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/images/Huracan(5).jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs"><span class="mr-2"><a th:href="@{/inform}">INGCar<i class="ion-ios-arrow-forward"></i></a></span>
+                    <span>공지사항<i class="ion-ios-arrow-forward"></i></span></p>
+                <h1 class="mb-3 bread">공지사항</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="container-fluid blog py-5">
+        <div class="container py-5">
+            <div class="welcome-demo" style="max-width: 900px; color: whitesmoke;">
+                <p>GET YOUR STUNNING CAR IN REASONABLE PRICE WITH ING Car ! </p>
+                <p> 잉카의 새로운 소식을 받아보세요 </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="container py-5">
+        <div class="row g-4 justify-content-center">
+            <!-- message가 있는 경우 메시지를 출력 -->
+            <div th:if="${message}">
+                <p th:text="${message}" style="color: white"></p>
+            </div>
+            <div th:each="inform, iterStat : ${informs}" class="col-lg-4 col-md-6">
+                <div class="blog-item">
+                    <div class="blog-img">
+                        <div class="blog-img-inner">
+                            <div th:if="${inform.post_image != null}">
+                                <img th:src="@{${inform.post_image}}" alt="Post Image">
+                            </div>
+                        </div>
+                        <div class="blog-content border border-top-0 rounded-bottom p-4">
+                            <a th:text="${inform.post_title}" style="color: white;"></a>
+                            <p th:text="${inform.created_at}" style="color:#959595"></p>
+                            <p th:text="${inform.post_precontent}" style="color:#959595"></p>
+                            <div class="my_modal" th:id="'my_modal_' + ${iterStat.index}">
+                                <p th:text="${inform.post_content}"></p>
+                                <a class="modal_close_btn">닫기</a>
+                            </div>
+                            <button class="rounded-pill py-2 px-4 popup_open_btn" th:data-modal-container-id="'my_modal_' + ${iterStat.index}"
+                                    onclick="modal('my_modal_' + [[${iterStat.index}]])">Read More</button>
+                            <!-- 수정 버튼 -->
+                            <button class="btn btn-primary" th:onclick="'editInform(' + ${inform.post_id} + ')'" th:if="${session.user_session != null and session.user_session.user_role == 1}">수정</button>
+                            <!-- 삭제 버튼 -->
+                            <button class="btn btn-danger" th:onclick="'deleteInform(' + ${inform.post_id} + ')'" th:if="${session.user_session != null and session.user_session.user_role == 1}">삭제</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <button type="button" class="btn btn-primary btn-sm btn-custom-width mb-3 float-right" data-toggle="modal" data-target="#informModal" th:if="${session.user_session != null and session.user_session.user_role == 1}">
+        작성하기
+    </button>
+    <br><br><br>
+</div>
+
+<div class="modal fade" id="informModal" tabindex="-1" aria-labelledby="informModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="informModalLabel">공지사항 작성</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="informForm" class="p-3">
+                <div class="form-group">
+                    <label for="postImage">공지 종류</label>
+                    <select class="form-control" id="postImage" name="post_image">
+                        <option value="/images/etc/normal.jpg">일반 공지</option>
+                        <option value="/images/etc/update.jpg">업데이트 공지</option>
+                        <option value="/images/etc/Awards.jpg">수상</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="postTitle">제목</label>
+                    <input type="text" class="form-control" id="postTitle" name="post_title" required>
+                </div>
+                <div class="form-group">
+                    <label for="postContent">내용</label>
+                    <textarea class="form-control" id="postContent" name="post_content" required></textarea>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">저장</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#informForm').on('submit', function(e) {
+            e.preventDefault();
+            let post_content = $('#postContent').val();
+            let post_precontent = post_content.length > 60 ? post_content.substring(0, 60) + '...' : post_content;
+
+            const formData = JSON.stringify({
+                post_title: $('#postTitle').val(),
+                post_content: post_content,
+                post_precontent: post_precontent,
+                post_image: $('#postImage').val()
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: '/inform/write',
+                contentType: 'application/json',
+                data: formData,
+                success: function(response) {
+                    alert('저장이 완료되었습니다.');
+                    // 필요 시 폼 초기화
+                    $('#informForm')[0].reset();
+                    // 모달 창 닫기
+                    $('#informModal').modal('hide');
+                    // 새로고침
+                    window.location.href = '/inform';
+                },
+                error: function(xhr, status, error) {
+                    alert('저장 중 오류가 발생했습니다.');
+                }
+            });
+        });
+    });
+
+    function editInform(post_id) {
+        // 수정할 데이터를 불러오기 위한 AJAX 요청
+        $.ajax({
+            type: 'GET',
+            url: '/inform/' + post_id,
+            success: function(data) {
+                // 데이터를 모달에 채워넣기
+                $('#postTitle').val(data.post_title);
+                $('#postContent').val(data.post_content);
+                $('#postImage').val(data.post_image);
+                $('#informModal').modal('show');
+
+                // 폼의 submit 이벤트 핸들러 변경
+                $('#informForm').off('submit').on('submit', function(e) {
+                    e.preventDefault();
+                    let post_content = $('#postContent').val();
+                    let post_precontent = post_content.length > 60 ? post_content.substring(0, 60) + '...' : post_content;
+
+                    const formData = JSON.stringify({
+                        post_id: post_id,
+                        post_title: $('#postTitle').val(),
+                        post_content: post_content,
+                        post_precontent: post_precontent,
+                        post_image: $('#postImage').val()
+                    });
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/inform/update',
+                        contentType: 'application/json',
+                        data: formData,
+                        success: function(response) {
+                            alert('수정이 완료되었습니다.');
+                            // 모달 창 닫기
+                            $('#informModal').modal('hide');
+                            // 새로고침
+                            window.location.href = '/inform';
+                        },
+                        error: function(xhr, status, error) {
+                            alert('수정 중 오류가 발생했습니다.');
+                        }
+                    });
+                });
+            },
+            error: function(xhr, status, error) {
+                alert('데이터를 불러오는 중 오류가 발생했습니다.');
+            }
+        });
+    }
+
+    function deleteInform(post_id) {
+        if(confirm("정말 삭제하시겠습니까?")) {
+            $.ajax({
+                type: 'DELETE',
+                url: '/inform/delete/' + post_id,
+                success: function(response) {
+                    alert('삭제가 완료되었습니다.');
+                    window.location.href = '/inform';
+                },
+                error: function(xhr, status, error) {
+                    alert('삭제 중 오류가 발생했습니다.');
+                }
+            });
+        }
+    }
+
+
+    function modal(parentId) {
+        var zIndex = 9999;
+        var modalContainer = document.getElementById(parentId);
+        var modal = modalContainer.querySelector('.my_modal');
+
+        var bg = document.createElement('div');
+        bg.setStyle({
+            position: 'fixed',
+            zIndex: zIndex,
+            left: '0px',
+            top: '0px',
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+            backgroundColor: 'rgba(0,0,0,0.4)'
+        });
+        document.body.append(bg);
+
+        modal.setStyle({
+            position: 'fixed',
+            display: 'block',
+            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+            zIndex: zIndex + 1,
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            msTransform: 'translate(-50%, -50%)',
+            webkitTransform: 'translate(-50%, -50%)'
+        });
+    }
+
+    Element.prototype.setStyle = function(styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+    };
+
+    var popupButtons = document.querySelectorAll('.popup_open_btn');
+    popupButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var modalContainerId = this.dataset.modalContainerId;
+
+            var modals = document.querySelectorAll('.my_modal');
+            modals.forEach(function(modal) {
+                modal.style.display = 'none';
+            });
+
+            var modal = document.getElementById(modalContainerId);
+            modal.style.display = 'block';
+
+            var closeButton = modal.querySelector('.modal_close_btn');
+            closeButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+        });
+    });
+
+    function modal(id) {
+        var modal = document.getElementById(id);
+        modal.style.display = "block";
+    }
+
+    document.querySelectorAll('.modal_close_btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            this.parentElement.style.display = 'none';
+        });
+    });
+</script>
+
+<div class="row justify-content-center">
+    <form th:action="@{/inform}" method="get" class="search-form">
+        <select name="type" class="search-input2">
+            <option value="">선택</option>
+            <option value="post_title">제목</option>
+            <option value="post_content">내용</option>
+        </select>
+        <input type="text" name="searchKeyword" class="search-input" placeholder="검색어를 입력하세요 !">
+        <button type="submit" class="search-button">search</button>
+    </form>
+</div>
+
+<div class="row justify-content-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                <a class="page-link" th:href="@{/inform(page=${currentPage - 1}, pageSize=${pageSize})}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}" th:if="${i <= maxDisplayPages}"
+                th:classappend="${i == currentPage} ? 'active'">
+                <a class="page-link" th:href="@{/inform(page=${i}, pageSize=${pageSize})}" th:text="${i}">1</a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                <a class="page-link" th:href="@{/inform(page=${currentPage + 1}, pageSize=${pageSize})}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div th:fragment="footer-fragment">
+    <footer class="ftco-footer ftco-bg-dark ftco-section" style="background-color: #003F5C;">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2"><a th:href="@{/}" class="logo" style="color: #d9e3ec;">ING<span style="color: #00CED1;">Car</span></a></h2>
+                        <p>GET YOUR STUNNING CAR <br> IN REASONABLE PRICE WITH ING Car !</p>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-5">
+                        <h2 class="ftco-heading-2"></h2>
+                        <ul class="list-unstyled">
+                            <li><a th:href="@{/car_registration}" class="py-2 d-block">내차팔기</a></li>
+                            <li><a th:href="@{/car_list}" class="py-2 d-block">내차사기</a></li>
+                            <li><a th:href="@{/review_main}" class="py-2 d-block">후기게시판 </a></li>
+                            <li><a th:href="@{/mypage}" class="py-2 d-block">마이페이지</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2"> </h2>
+                        <ul class="list-unstyled">
+                            <li><a href="privacypolicy.html" class="py-2 d-block">개인정보처리방침 </a></li>
+                            <li><a href="#" class="py-2 d-block">회사소개 </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">회사정보</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">서울특별시 강남구 도산대로 888 </span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02-2222-3333</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">ingcar@ingcar.co.kr</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+    <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+            stroke="#F96D00" />
+</svg></div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="js/google-map.js"></script>
+<script src="js/main.js"></script>
+<script src="js/custom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

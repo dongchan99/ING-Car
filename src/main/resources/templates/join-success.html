@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>로그인 성공</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css"> <!--css 원본파일-->
+    <link rel="stylesheet" href="css/jihee.css"> <!--지희-->
+    <link rel="stylesheet" href="css/ydc.css">
+
+
+</head>
+
+
+<body>
+
+<!--
+--------nav 상단바 start
+--------nav 상단바 start
+--------nav 상단바 start
+-->
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
+    <div class="container">
+        <a class="navbar-brand2" href="/" style="color: #001F3F;">ING<span style="color: #00CED1;">Car</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#ftco-nav" aria-controls="ftco-nav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav" style="white-space: nowrap; width: 80%; height: 100%;">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a th:href="@{/car_registration}" class="nav-link" id="nav-link4">내차팔기</a></li>
+                <li class="nav-item"><a th:href="@{/car_list}" class="nav-link" id="nav-link4">내차사기</a></li>
+                <li class="nav-item"><a th:href="@{/review_main}" class="nav-link" id="nav-link4">후기게시판</a></li>
+                <li class="nav-item"><a th:href="@{/inform}" class="nav-link" id="nav-link4">공지게시판</a></li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto" style="white-space: nowrap;">
+                <li class="nav-item" th:if="${session.user_session == null}">
+                    <a href="/loginPage" class="nav-link5">login</a>
+                </li>
+                <li class="nav-item" th:if="${session.user_session != null}">
+                    <a href="/logout" class="nav-link5">logout</a>
+                </li>
+                <li class="nav-item"> <a href="/mypage" class="nav-link5">Mypage </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!--
+--------nav 상단바 end----------------------------
+--------nav 상단바 end ---------------------------
+--------nav 상단바 end----------------------------
+-->
+
+
+    <div class="hero-wrap " style="background-image: url('/images/bg_1.jpg'); margin-bottom:200px;"
+        data-stellar-background-ratio="0.5">
+    
+        
+        <div class="container">
+            <div class="welcome-hero-txt">
+                <h2 style="white-space: nowrap;">GET YOUR STUNNING CAR IN REASONABLE PRICE WITH ING Car !</h2>
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </div>
+    <section id="targetSection">
+    <div id="signup-success" style="margin-bottom: 200px;">
+        <div class="container">
+            <h1 style="color: black;">가입 완료</h1>
+            <hr style="margin-bottom:100px;">
+            <div style="text-align: center;">
+                <p class="success-text">ING Car 회원으로 </p>
+                <p class="success-text">가입해주셔서 감사합니다 </p>
+            </div>
+            <hr style="margin-top:100px;">
+
+            <div style="text-align: center;">
+                <br>
+                <br>
+                <a href="/loginPage">  <button class="btn btn-primary btn-lg" style="display: inline-block;">로그인</button></a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- --Footer start ------------ -->
+<div th:insert="~{footer :: footer-fragment}"></div>
+<!-- ---------------Footer end ------------ -->
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.easing.1.3.js"></script>
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/jquery.stellar.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/jquery.animateNumber.min.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
+    <script src="/js/jquery.timepicker.min.js"></script>
+    <script src="/js/scrollax.min.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="/js/google-map.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/ydc.js"></script>
+
+
+
+</body>
+
+</html>

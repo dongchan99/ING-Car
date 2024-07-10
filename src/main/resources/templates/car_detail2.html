@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>차량 판매(세부)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css"> <!--css 원본파일-->
+    <link rel="stylesheet" href="css/jihee.css"> <!--지희-->
+    <link rel="stylesheet" href="css/ydc.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+<!--
+--------nav 상단바 start
+--------nav 상단바 start
+--------nav 상단바 start
+-->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
+    <div class="container">
+        <a class="navbar-brand2" href="/" style="color: #001F3F;">ING<span style="color: #00CED1;">Car</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+
+
+
+        <div class="collapse navbar-collapse" id="ftco-nav" style="white-space: nowrap; width: 80%; height: 100%;">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a th:href="@{/car_registration}" class="nav-link" id="nav-link4">내차팔기</a></li>
+                <li class="nav-item"><a th:href="@{/car_list}" class="nav-link" id="nav-link4">내차사기</a></li>
+                <li class="nav-item"><a th:href="@{/review_main}" class="nav-link" id="nav-link4">후기게시판</a></li>
+                <li class="nav-item"><a th:href="@{/inform}" class="nav-link" id="nav-link4">공지게시판</a></li>
+
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto" style="white-space: nowrap;">
+                <li class="nav-item" th:if="${session.user_session == null}">
+                    <a href="/loginPage" class="nav-link5">login</a>
+                </li>
+                <li class="nav-item" th:if="${session.user_session != null}">
+                    <a href="/logout" class="nav-link5">logout</a>
+                </li>
+                <li class="nav-item"> <a href="/mypage" class="nav-link5">Mypage </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--
+--------nav 상단바 end----------------------------
+--------nav 상단바 end ---------------------------
+--------nav 상단바 end----------------------------
+-->
+
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_3.jpg');"
+         data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                        class="ion-ios-arrow-forward"></i></a></span>
+                    <span><a href="car.html">Car <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span>&nbsp;Car details</span>
+                </p>
+                <h1 class="mb-3 bread">Car Details</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="ftco-section ftco-car-details">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="car-details">
+                    <div style="margin-bottom:10px;">
+                        <button id="updateBtn" class="btn btn-primary"
+                                th:attr="car_registration_id=${cu.car_registration_id}"
+                                style="margin-top:85px; float:right; margin-right:20px;">수정하기
+                        </button>
+                        <!-- 삭제하기 버튼 -->
+                        <button id="deleteBtn" class="btn btn-primary"
+                                th:attr="car_registration_id=${cu.car_registration_id}"
+                                style="margin-top: 85px; float: right; margin-right: 20px;">삭제하기
+                        </button>
+                        <div style="float:right; color: black;">
+                            <span class="icon-share2"></span>
+                            <p id="copyText" style="cursor: pointer; float: right; margin-left:5px;">Share</p>
+                        </div>
+                        <div id="car_registration_id" th:text="${cu.car_registration_id}" style="display: none"></div>
+                        <div id="car_model" th:text="${cu.car_model}" style="display: none"></div>
+
+                        <div><span class="subheading text-left">등록일자: <span
+                                th:text="${#dates.format(cu.car_registration_date, 'yyyy.MM.dd')}"></span> / 조회수: <span th:text="${cu.car_views}"></span></span></div>
+                    </div>
+                    <div id="car_origin" class="img rounded" th:style="|background-image: url('/images/${cu.car_model}(1).jpg')|">
+                    </div>
+                    <button id="prev_button" class="btn btn-lg"
+                            style="float:left; background-color: gray; color: white;">&lt; prev</button>
+                    <button id="next_button" class="btn btn-lg"
+                            style="float: right; background-color: gray; color: white;">next &gt;</button>
+                    <div class="text text-center">
+							<span class="subheading"><span th:text="${cu.car_brand}"></span>
+							<h2><span th:text="${cu.car_model}"></span></h2>
+								<h5>Price : <span th:text="${cu.car_price2} + '원'"></span></h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!------------------------------>
+        <!------------------------------>
+        <!------------------------------>
+
+
+        <!------------------------------>
+        <!------------------------------>
+        <!------------------------------>
+
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-3">
+                <div class="car-wrap rounded ftco-animate">
+                    <div id="car_img1" class="img rounded d-flex align-items-end"
+                         th:style="|background-image: url('/images/${cu.car_model}(2).jpg')|">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="car-wrap rounded ftco-animate">
+                    <div id="car_img2" class="img rounded d-flex align-items-end"
+                         th:style="|background-image: url('/images/${cu.car_model}(3).jpg')|">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="car-wrap rounded ftco-animate">
+                    <div id="car_img3" class="img rounded d-flex align-items-end"
+                         th:style="|background-image: url('/images/${cu.car_model}(4).jpg')|">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="car-wrap rounded ftco-animate">
+                    <div id="car_img4" class="img rounded d-flex align-items-end"
+                         th:style="|background-image: url('/images/${cu.car_model}(5).jpg')|">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md d-flex align-self-stretch ftco-animate" style=" margin-bottom:50px">
+                <div class="media block-6 services">
+                    <div class="media-body py-md-4">
+                        <div class="d-flex mb-3 align-items-center">
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="flaticon-car"></span></div>
+                            <div class="text">
+                                <h3 class="heading mb-0 pl-3">
+                                    브랜드
+                                    <span th:text="${cu.car_brand}"></span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md d-flex align-self-stretch ftco-animate" style=" margin-bottom:50px">
+                <div class="media block-6 services">
+                    <div class="media-body py-md-4">
+                        <div class="d-flex mb-3 align-items-center">
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="flaticon-dashboard"></span></div>
+                            <div class="text">
+                                <h3 class="heading mb-0 pl-3">
+                                    주행거리
+                                    <span th:text="${cu.car_mileage}+'&nbsp;km'"> </span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services">
+                    <div class="media-body py-md-4">
+                        <div class="d-flex mb-3 align-items-center">
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="flaticon-pistons"></span></div>
+                            <div class="text">
+                                <h3 class="heading mb-0 pl-3">
+                                    사고여부
+                                    <span th:text="${cu.car_accident_history}"></span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services">
+                    <div class="media-body py-md-4">
+                        <div class="d-flex mb-3 align-items-center">
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="flaticon-diesel"></span></div>
+                            <div class="text">
+                                <h3 class="heading mb-0 pl-3">
+                                    연료
+                                    <span th:text="${cu.car_fuel_type}"></span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Contents</h2>
+                <hr>
+                <p class="sub-content" >
+                    <span th:text="${cu.car_description}"></span>
+
+                </p>
+            </div>
+        </div>
+
+        <div class="row" style=" margin-top:50px; margin-bottom:100px;">
+            <div class="col-md-12 pills">
+                <div class="bd-example bd-example-tabs">
+                    <div class="d-flex justify-content-center">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-seller-tab" data-toggle="pill"
+                                   href="#pills-seller" role="tab" aria-controls="pills-seller"
+                                   aria-expanded="true">Seller</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-related-tab" data-toggle="pill" href="#pills-related"
+                                   role="tab" aria-controls="pills-related" aria-expanded="true">Related Car</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-seller" role="tabpanel"
+                             aria-labelledby="pills-seller-tab">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <h3 class="head">User</h3>
+                                    <div class="seller d-flex">
+                                        <div class="user-img" style="background-image: url('/images/user2.jpg')">
+                                        </div>
+                                        <div class="desc">
+
+                                            <span class="text-left" style="font-size: 25px; color:black;"><span th:text="${cu.user_name}"></span></span>
+                                            <br>
+                                            <br>
+                                            <p><span style="color:black;"><span th:text="${cu.user_comment}"></span></span></p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="rating-wrap">
+                                        <h3 class="head">Review history</h3>
+                                        <div class="wrap">
+                                            <p class="star">
+                                                    <span>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[0].board_star >= 1}"></i>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[0].board_star >= 2}"></i>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[0].board_star >= 3}"></i>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[0].board_star >= 4}"></i>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[0].board_star >= 5}"></i>
+                                                    </span>
+                                                <span th:text="${reviewCounts[0].review_count} + ' Reviews'">0 Reviews</span>
+                                            </p>
+                                            <p class="star">
+                                                    <span>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[1].board_star >= 1}"></i>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[1].board_star >= 2}"></i>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[1].board_star >= 3}"></i>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[1].board_star >= 4}"></i>
+                                                    </span>
+                                                <span th:text="${reviewCounts[1].review_count} + ' Reviews'">0 Reviews</span>
+                                            </p>
+                                            <p class="star">
+                                                    <span>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[2].board_star >= 1}"></i>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[2].board_star >= 2}"></i>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[2].board_star >= 3}"></i>
+                                                    </span>
+                                                <span th:text="${reviewCounts[2].review_count} + ' Reviews'">0 Reviews</span>
+                                            </p>
+                                            <p class="star">
+                                                    <span>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[3].board_star >= 1}"></i>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[3].board_star >= 2}"></i>
+                                                    </span>
+                                                <span th:text="${reviewCounts[3].review_count} + ' Reviews'">0 Reviews</span>
+                                            </p>
+                                            <p class="star">
+                                                    <span>
+                                                        <i class="ion-ios-star" th:if="${reviewCounts[4].board_star >= 1}"></i>
+                                                    </span>
+                                                <span th:text="${reviewCounts[4].review_count} + ' Reviews'">0 Reviews</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-related" role="tabpanel" aria-labelledby="pills-related-tab">
+                            <div class="container tab-content" id="pills-tabContent">
+                                <div class="row">
+                                    <!-- Thymeleaf에서 리스트를 순회하며 최대 3개까지만 출력 -->
+                                    <div th:each="rc, iterStat : ${List}" th:if="${iterStat.index} < 3" class="col-md-4">
+                                        <div class="car-wrap rounded ftco-animate">
+                                            <div class="img rounded d-flex align-items-end"
+                                                 th:style="|background-image: url('/images/${rc.car_model}(1).jpg')|">
+                                            </div>
+                                            <div class="text">
+                                                <h2 class="mb-3"><a href="car-single.html"><span th:text="${rc.car_model}"></span></a></h2>
+                                                <div class="d-flex mb-1">
+                                                    <span class="cat" style="color:black; font-weight: bold" th:text="${rc.car_brand}"></span>
+                                                    <p class="price ml-auto"><span style="color:black; font-weight: bold">판매자 :</span> <span style="color:black; font-weight: bold" th:text="${rc.user_id}"></span></p>
+                                                </div>
+
+                                                <div class="d-flex mb-3">
+                                                    <p class="price ml-auto"><span style="color:black; font-weight: bold" th:text="${rc.car_price2}+'원'"></span></p>
+                                                </div>
+
+                                                <p class="d-flex justify-content-center mb-0 d-block">
+                                                    <a th:href="'/car_detail?car_registration_id=' + ${rc.car_registration_id}" class="btn btn-secondary py-2 ml-1">Details</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- --Footer start ------------ -->
+<div th:insert="footer :: footer-fragment"></div>
+<!-- ---------------Footer end ------------ -->
+
+
+
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+    <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+            stroke="#F96D00" />
+</svg></div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="js/google-map.js"></script>
+<script src="js/main.js"></script>
+<script src="js/ydc.js"></script>
+<script src="js/car_detail.js"></script>
+
+
+</body>
+
+</html>

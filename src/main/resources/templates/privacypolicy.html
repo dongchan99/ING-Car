@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>INGCar</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/css/animate.css">
+
+  <link rel="stylesheet" href="/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/css/magnific-popup.css">
+
+  <link rel="stylesheet" href="/css/aos.css">
+
+  <link rel="stylesheet" href="/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/css/jquery.timepicker.css">
+
+
+  <link rel="stylesheet" href="/css/flaticon.css">
+  <link rel="stylesheet" href="/css/icomoon.css">
+	<link rel="stylesheet" href="/css/style.css">  <!--css 원본파일-->
+	<link rel="stylesheet" href="/css/jihee.css"> <!--지희-->
+
+</head> 
+
+<body>
+
+<!--
+--------nav 상단바 start
+--------nav 상단바 start
+--------nav 상단바 start
+ -->
+
+
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
+
+      <div class="container">
+
+         <a class="navbar-brand2" href="/" style="color: #ffffff;">ING<span style="color: #00CED1;">Car</span></a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#ftco-nav" aria-controls="ftco-nav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+         </button>
+         
+      
+
+
+         <div class="collapse navbar-collapse" id="ftco-nav" style="white-space: nowrap; width: 80%; height: 100%;">
+            <ul class="navbar-nav"> 
+               <!-- ml-auto -->
+            
+               <li class="nav-item"><a href="/car_registration" class="nav-link" id="nav-link4">내차팔기</a></li>
+               <li class="nav-item"><a href="/car_list" class="nav-link" id="nav-link4">내차사기</a></li>
+               <li class="nav-item"><a href="/review_main" class="nav-link" id="nav-link4">후기게시판</a></li>
+               <li class="nav-item"><a href="/mypage" class="nav-link" id="nav-link4">마이페이지</a></li>
+            </ul>
+            </div>
+
+          <div class="collapse navbar-collapse" id="ftco-nav">
+              <ul class="navbar-nav ml-auto" style="white-space: nowrap;">
+                  <li class="nav-item" th:if="${session.user_session == null}">
+                      <a href="/loginPage" class="nav-link5">login</a>
+                  </li>
+                  <li class="nav-item" th:if="${session.user_session != null}">
+                      <a href="/logout" class="nav-link5">logout</a>
+                  </li>
+                  <li class="nav-item"> <a href="/mypage" class="nav-link5">Mypage </a></li>
+              </ul>
+          </div>
+            </div>
+      </nav>
+<!--
+--------nav 상단바 end----------------------------
+--------nav 상단바 end ---------------------------
+--------nav 상단바 end----------------------------
+ -->
+
+
+   
+ <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/images/9999.png');"
+ data-stellar-background-ratio="0.5">
+ <div class="overlay"></div>
+ <div class="container">
+   <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+     <div class="col-md-9 ftco-animate pb-5">
+       <p class="breadcrumbs"><span class="mr-2"><a href="index.html">INGCar <i
+               class="ion-ios-arrow-forward"></i></a></span> 
+       <h1 class="mb-3 bread">개인정보처리방침</h1>
+     </div>
+   </div>
+ </div>
+</section>
+
+   
+<section class="ftco-section ftco-no-pt bg-light" id="bg-light3">
+    <div class="container" style="padding-top: 10rem;">
+      <h3>1. 잉카 개인정보 처리방침</h3>
+            <p>
+            “개인정보 처리방침”이란 이용자가 안심하고 서비스를 이용할 수 있도록 회사가 준수해야 할 지침을 의미하며, 잉카는 개인정보처리자가 준수하여야 하는 대한민국의 관계 법령 및 개인정보보호 규정, 가이드라인을 준수하여 개인정보 처리방침을 제공합니다. 
+            잉카는 이용자의 동의를 기반으로 개인정보를 수집·이용 및 제공하고 있습니다. 이용자의 권리(개인정보 자기결정권)를 적극적으로 보장하기 위해 개인정보 처리방침을 알기 쉽게 제공할 수 있도록 다양한 노력을 기울이고 있으며, 이러한 노력의 일환으로 잉카의 주요 개인정보 처리 관련 정보를 라벨링으로 제공합니다.
+             </p> 
+    </div>
+
+    <div class="container" style="padding-top: 10rem;">
+      <h3>2. 개인정보 수집</h3>
+              <p>
+                서비스 제공을 위한 필요 최소한의 개인정보를 수집합니다.
+                회원 가입 시 또는 서비스 이용 과정에서 홈페이지 또는 개별 어플리케이션이나 프로그램 등을 통해 서비스 제공을 위해 필요 최소한의 개인정보를 수집하고 있습니다.
+                서비스 제공을 위해 반드시 필요한 최소한의 정보를 필수항목으로, 그 외 특화된 서비스를 제공하기 위해 추가 수집하는 정보는 선택항목으로 동의를 받고 있으며, 선택항목에 동의하지 않은 경우에도 서비스 이용 제한은 없습니다.
+              </p>
+              <p></p>
+              [잉카계정 가입 시]<br>
+              필수<br>
+              이메일, 비밀번호, 이름, 전화번호
+              
+              선택
+              생년월일, 성별, 배송지정보(수령인명, 배송지주소, 전화번호)
+              
+              [본인인증 시]
+              이름, 성별, 생년월일, 휴대전화번호, 통신사업자, 내/외국인 여부, 암호화된 이용자 확인값(CI), 중복가입확인정보(DI)
+              
+              [법정대리인 동의 시]
+              법정대리인 정보(이름, 성별, 생년월일, 휴대전화번호, 통신사업자, 내/외국인 여부, 암호화된 이용자 확인값(CI), 중복가입확인정보(DI))
+              
+            
+              [환불처리 시]
+              계좌은행, 계좌번호, 예금주명, 이메일
+              
+              [현금영수증 발행 시]
+              휴대전화번호, 현금영수증 카드번호
+              
+              [고객상담 시]
+              고객센터로 문의 및 상담 시 상담 처리를 위한 추가적인 정보를 수집할 수 있습니다.
+
+              개인정보를 수집하는 방법은 아래와 같습니다.
+              개인정보를 수집하는 경우에는 원칙적으로 사전에 이용자에게 해당 사실을 알리고 동의를 구하고 있으며, 아래와 같은 방법을 통해 개인정보를 수집합니다.
+
+              회원가입 및 서비스 이용 과정에서 이용자가 개인정보 수집에 대해 동의를 하고 직접 정보를 입력하는 경우
+              제휴 서비스 또는 단체 등으로부터 개인정보를 제공받은 경우
+              고객센터를 통한 상담 과정에서 웹페이지, 메일, 팩스, 전화 등
+              온·오프라인에서 진행되는 이벤트/행사 등 참여
+              서비스 이용 과정에서 단말기정보, IP주소, 쿠키, 서비스 이용 내역* 등의 정보가 자동으로 생성되어 수집될 수 있습니다.
+
+              *서비스 이용 내역이란 서비스 이용 과정에서 자동화된 방법으로 생성되거나 이용자가 입력한 정보가 송수신되면서 카카오 서버에 자동으로 기록 및 수집될 수 있는 정보를 의미합니다. 이와 같은 정보는 다른 정보와의 결합 여부, 처리하는 방식 등에 따라 개인정보에 해당할 수 있고 개인정보에 해당하지 않을 수도 있습니다.
+
+
+              서비스 이용 내역에는 이용자가 입력 및 공유한 콘텐츠, 이용자가 입력한 검색어, 방문 및 접속기록, 서비스 부정이용 기록, 위치정보 등이 포함될 수 있습니다. 예를 들면, 이용자간 주고받은 메시지의 텍스트, 이미지, 동영상, 음성 등은 회사의 서버를 경유하여 상대방에게 송신됩니다. 이 때 콘텐츠 수신자, 데이터 형식, 게시 일시 등 이용자와 상대방과의 사이에서 송수신하는 형태, 방식 정보도 서버에 기록됩니다. 카카오는 이용자간 주고받은 메시지 등 전송하는 콘텐츠 내용은 원칙적으로 전송 이외의 목적으로는 사용하지 않습니다. 카카오는 서비스 이용기록 등의 정보를 서비스 제공 목적으로 처리할 수 있으며 필요한 경우에는 이용자의 추가 동의 등을 받고 이용할 수 있습니다.
+
+              서비스 간 제휴, 연계 등으로 제3자로부터 개인정보를 제공받습니다.  
+    </div>
+
+
+
+</section>
+ 
+
+
+
+
+
+   
+
+
+
+
+
+              </div>
+      </div>
+    </section>
+        <!-- 내용추가하기-->
+
+
+
+
+              
+   
+     </div>
+<!-- --Footer start ------------ -->
+<div th:insert="~{footer :: footer-fragment}"></div>
+<!-- ---------------Footer end ------------ -->
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+    <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+      stroke="#F96D00" />
+  </svg></div>
+
+
+ 
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/jquery.waypoints.min.js"></script>
+<script src="/js/jquery.stellar.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/jquery.animateNumber.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.timepicker.min.js"></script>
+<script src="/js/scrollax.min.js"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="/js/google-map.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/custom.js"></script> <!--훈규님-->
+
+</body>
+
+</html>

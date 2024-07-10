@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/css/mypage_car.css">
+</head>
+
+<body>
+<section class="hero">
+    <header id="header">
+        <a id="logo" href="/" style="color: black;">ING Car</a>
+    </header>
+
+    <div class="wrapper">
+
+        <div class="content">
+            <div class="bg-shape">
+
+            </div>
+
+            <div class="product-img">
+
+                <div class="product-img__item" id="911">
+                    <img src="/images/911.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="Audi-R8">
+                    <img src="/images/Audi-R8.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="Audi-RSE-tronGT">
+                    <img src="/images/Audi-RSE-tronGT.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="Benz-GT43AMG">
+                    <img src="/images/Benz-GT43AMG.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="Benz-SL63AMG">
+                    <img src="/images/Benz-SL63AMG.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="BoxsterGTS">
+                    <img src="/images/BoxsterGTS.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="F8">
+                    <img src="/images/F8.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="Ferrari-Roma">
+                    <img src="/images/Ferrari-Roma.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="GT43AMG">
+                    <img src="/images/GT43AMG.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="Huracan">
+                    <img src="/images/Huracan.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="Lambo-Urus">
+                    <img src="/images/Lambo-Urus.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="Porsche">
+                    <img src="/images/Porsche.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="porsche-911">
+                    <img src="/images/porsche-911.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="porsche-BoxsterGTS">
+                    <img src="/images/porsche-BoxsterGTS.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="R8">
+                    <img src="/images/R8.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="Roma">
+                    <img src="/images/Roma.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="SL63AMG">
+                    <img src="/images/SL63AMG.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="tronGT">
+                    <img src="/images/tronGT.png" alt="star wars" class="product-img__img">
+                </div>
+
+                <div class="product-img__item" id="Urus">
+                    <img src="/images/Urus.png" alt="star wars" class="product-img__img">
+                </div>
+            </div>
+
+
+            <div class="product-slider">
+                <button class="prev disabled">
+            <span class="icon">
+              <svg class="icon icon-arrow-right">
+                <use xlink:href="#icon-arrow-left"></use>
+              </svg>
+            </span>
+                </button>
+                <button class="next">
+            <span class="icon">
+              <svg class="icon icon-arrow-right">
+                <use xlink:href="#icon-arrow-right"></use>
+              </svg>
+            </span>
+                </button>
+
+                <div class="product-slider__wrp swiper-wrapper">
+                    <div class="product-slider__item swiper-slide" th:each="resultlist : ${resultlist}" th:attr="data-target=${resultlist.car_model}">
+                        <div class="product-slider__card" style="background-color: black;">
+
+                            <div class="product-slider__content">
+                                <h1 class="product-slider__title" style="color: white;" th:text="${resultlist.car_model}"></h1>
+                                <span class="product-slider__price" ></span>
+                                <div class="product-ctr">
+                                    <div class="product-labels">
+                                        <div class="product-labels__title">PRICE</div>
+
+                                        <div class="product-labels__group">
+                                            <input th:id="${resultlist.car_registration_id}" type="text" style="width: 150px; height: 30px">
+                                        </div>
+
+                                    </div>
+
+                                    <span class="hr-vertical"></span>
+
+                                    <div class="product-inf">
+
+                                        <div>
+                                            <p>DATE</p>
+                                        </div>
+
+                                        <span class="product-inf__title" th:text="${#dates.format(resultlist.car_registration_date, 'yyyy.MM.dd')}">2021</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-slider__bottom">
+                                    <button class="product-slider__cart">
+                                        <a href="#" style="text-decoration-line: none; color: white" th:onclick="'sendPostRequest(\'' + ${resultlist.car_registration_id} + '\')'">Update</a>
+                                    </button>
+                                </div>
+
+                                <script>
+
+                                    function formatKoreanCurrency(amount) {
+                                        const units = ['', '만', '억', '조'];
+                                        let result = '';
+                                        let unitIndex = 0;
+                                        let hasHigherUnit = false;
+
+                                        while (amount > 0) {
+                                            let part = amount % 10000;
+                                            if (part > 0) {
+                                                if (unitIndex == 0 && !hasHigherUnit) {
+                                                    // 천원 이하 단위 생략
+                                                } else {
+                                                    result = part + units[unitIndex] + result;
+                                                }
+                                                hasHigherUnit = true;
+                                            }
+                                            amount = Math.floor(amount / 10000);
+                                            unitIndex++;
+                                        }
+
+                                        return result;
+                                    }
+
+                                    function sendPostRequest(value3) {
+
+                                        if (confirm('정말로 이 차량을 수정하시겠습니까?')){
+
+                                            // 데이터 준비
+                                            const value=document.getElementById(value3).value;
+                                            const value2=formatKoreanCurrency(value);
+
+
+                                            console.log(value);
+
+                                            const data = {
+                                                key: value,
+                                                key2:value2,
+                                                key3:value3,
+                                            };
+
+                                            // AJAX 요청 보내기
+                                            fetch('/mypage/update/car', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json'
+                                                },
+                                                body: JSON.stringify(data)
+                                            })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    console.log('Success:', data);
+                                                    // location.href="mypage_buying_cancel"
+                                                })
+                                                .catch(error => {
+                                                    console.error('Error:', error);
+                                                });
+                                        }
+
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="social">
+            <a href="https://twitter.com/imuhammederdem" target="_blank" class="social__item">
+                <img src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1536405220/starwars/twitter.webp"
+                     alt="muhammed erdem" class="social__img">
+                <span class="social__txt">Coded By Muhammed Erdem</span>
+            </a>
+
+            <a href="https://dribbble.com/shots/3453028-Star-Wars-TIE-Fighter-UI" target="_blank" class="social__item">
+                <img src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1536405220/starwars/dribbble.webp"
+                     alt="eray yeşilyurt" class="social__img">
+                <span class="social__txt">Designed By Eray Yeşilyurt</span>
+            </a>
+
+        </div>
+
+    </div>
+    <svg class="hidden" hidden>
+        <symbol id="icon-arrow-left" viewBox="0 0 32 32">
+            <path
+                    d="M0.704 17.696l9.856 9.856c0.896 0.896 2.432 0.896 3.328 0s0.896-2.432 0-3.328l-5.792-5.856h21.568c1.312 0 2.368-1.056 2.368-2.368s-1.056-2.368-2.368-2.368h-21.568l5.824-5.824c0.896-0.896 0.896-2.432 0-3.328-0.48-0.48-1.088-0.704-1.696-0.704s-1.216 0.224-1.696 0.704l-9.824 9.824c-0.448 0.448-0.704 1.056-0.704 1.696s0.224 1.248 0.704 1.696z">
+            </path>
+        </symbol>
+        <symbol id="icon-arrow-right" viewBox="0 0 32 32">
+            <path
+                    d="M31.296 14.336l-9.888-9.888c-0.896-0.896-2.432-0.896-3.328 0s-0.896 2.432 0 3.328l5.824 5.856h-21.536c-1.312 0-2.368 1.056-2.368 2.368s1.056 2.368 2.368 2.368h21.568l-5.856 5.824c-0.896 0.896-0.896 2.432 0 3.328 0.48 0.48 1.088 0.704 1.696 0.704s1.216-0.224 1.696-0.704l9.824-9.824c0.448-0.448 0.704-1.056 0.704-1.696s-0.224-1.248-0.704-1.664z">
+            </path>
+        </symbol>
+    </svg>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <script>
+        var swiper = new Swiper('.product-slider', {
+            spaceBetween: 30,
+            effect: 'fade',
+            // initialSlide: 2,
+            loop: false,
+            navigation: {
+                nextEl: '.next',
+                prevEl: '.prev'
+            },
+            // mousewheel: {
+            //     // invert: false
+            // },
+            on: {
+                init: function () {
+                    var index = this.activeIndex;
+
+                    var target = $('.product-slider__item').eq(index).data('target');
+
+                    console.log(target);
+
+                    $('.product-img__item').removeClass('active');
+                    $('.product-img__item#' + target).addClass('active');
+                }
+            }
+
+        });
+
+        swiper.on('slideChange', function () {
+            var index = this.activeIndex;
+
+            var target = $('.product-slider__item').eq(index).data('target');
+
+            console.log(target);
+
+            $('.product-img__item').removeClass('active');
+            $('.product-img__item#' + target).addClass('active');
+
+            if (swiper.isEnd) {
+                $('.prev').removeClass('disabled');
+                $('.next').addClass('disabled');
+            } else {
+                $('.next').removeClass('disabled');
+            }
+
+            if (swiper.isBeginning) {
+                $('.prev').addClass('disabled');
+            } else {
+                $('.prev').removeClass('disabled');
+            }
+        });
+
+        $(".js-fav").on("click", function () {
+            $(this).find('.heart').toggleClass("is-active");
+        });
+    </script>
+</section>
+
+<div class="hamburger">
+    <div class="hamburger--container">
+        <div class="hamburger--bars"></div>
+    </div>
+</div>
+
+
+<div class="fsmenu">
+    <div class="fsmenu--container">
+        <div class="fsmenu--text-block">
+            <div class="fsmenu--text-container">
+                <ul class="fsmenu--list">
+                    <li class="fsmenu--list-element">
+                        <a href="list_menu.html">
+                            <span>Account</span>
+                        </a>
+                        <div class="fsmenu--scrolling-text">
+                            <span>Account</span><span>Account</span><span>Account</span><span>Account</span><span>Account</span>
+                        </div>
+                    </li>
+                    <li class="fsmenu--list-element">
+                        <a href="slide_menu.html">
+                            <span>Product</span>
+                        </a>
+                        <div class="fsmenu--scrolling-text">
+                            <span>Product</span><span>Product</span><span>Product</span><span>Product</span><span>Product</span>
+                        </div>
+                    </li>
+                    <li class="fsmenu--list-element">
+                        <a href="#">
+                            <span>Gallery</span>
+                        </a>
+                        <div class="fsmenu--scrolling-text">
+                            <span>Gallery</span><span>Gallery</span><span>Gallery</span><span>Gallery</span><span>Gallery</span>
+                        </div>
+                    </li>
+                    <li class="fsmenu--list-element">
+                        <a href="#">
+                            <span>About Us</span>
+                        </a>
+                        <div class="fsmenu--scrolling-text">
+                            <span>About Us</span><span>About Us</span><span>About Us</span><span>About Us</span><span>About
+                  Us</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.hamburger').click(function () {
+            var $this = $(this);
+            if ($this.hasClass('is-active')) {
+                $('.fsmenu, .logo').removeClass('is-active').addClass('close-menu');
+            } else {
+                $('.fsmenu, .logo').removeClass('close-menu').addClass('is-active');
+            }
+            $this.toggleClass('is-active');
+        });
+
+        $(".fsmenu--list-element").hover(
+            function () {
+                $(this).addClass('open').removeClass('is-closing');
+            },
+            function () {
+                $(this).removeClass('open').addClass('is-closing');
+            }
+        );
+    });
+</script>
+</body>
+
+</html>

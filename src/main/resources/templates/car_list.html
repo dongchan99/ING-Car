@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<link rel="stylesheet" href="css/aos.css">
+
+	<link rel="stylesheet" href="css/ionicons.min.css">
+
+	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/icomoon.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/jihee.css">
+	<link rel="stylesheet" href="css/carList_HG.css"><!--작성한 코드-->
+</head>
+<body style="overflow-x: hidden">
+<!--
+--------nav 상단바 start
+--------nav 상단바 start
+--------nav 상단바 start
+-->
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
+	<div class="container">
+		<a class="navbar-brand2" href="/" style="color: #001F3F;">ING<span style="color: #00CED1;">Car</span></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#ftco-nav" aria-controls="ftco-nav"
+				aria-expanded="false" aria-label="Toggle navigation">
+			<span class="oi oi-menu"></span> Menu
+		</button>
+
+		<div class="collapse navbar-collapse" id="ftco-nav" style="white-space: nowrap; width: 80%; height: 100%;">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a th:href="@{/car_registration}" class="nav-link" id="nav-link4">내차팔기</a></li>
+				<li class="nav-item"><a th:href="@{/car_list}" class="nav-link" id="nav-link4">내차사기</a></li>
+				<li class="nav-item"><a th:href="@{/review_main}" class="nav-link" id="nav-link4">후기게시판</a></li>
+				<li class="nav-item"><a th:href="@{/inform}" class="nav-link" id="nav-link4">공지게시판</a></li>
+			</ul>
+		</div>
+
+		<div class="collapse navbar-collapse" id="ftco-nav">
+			<ul class="navbar-nav ml-auto" style="white-space: nowrap;">
+				<li class="nav-item" th:if="${session.user_session == null}">
+					<a href="/loginPage" class="nav-link5">login</a>
+				</li>
+				<li class="nav-item" th:if="${session.user_session != null}">
+					<a href="/logout" class="nav-link5">logout</a>
+				</li>
+				<li class="nav-item"> <a href="/mypage" class="nav-link5">Mypage </a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+<!--
+--------nav 상단바 end----------------------------
+--------nav 상단바 end ---------------------------
+--------nav 상단바 end----------------------------
+-->
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/images/car_image.png');" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+			<div class="col-md-9 ftco-animate pb-5">
+				<p class="breadcrumbs"><span class="mr-2"><a href="/">메인 <i class="ion-ios-arrow-forward"></i></a></span> <span>내차사기 <i class="ion-ios-arrow-forward"></i></span></p>
+				<h1 class="mb-3 bread">등록된 차량</h1>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="ftco-section bg-light">
+	<div class="container-fluid" style="white-space: nowrap;">
+		<div class="row">
+			<div class="col-md-2" style="position: fixed; top: 60px; left: 0; height: 100vh; overflow-y: auto; z-index: 10;">
+				<div class="filter-wrap">
+					<h4>차량 검색</h4>
+					<form th:action="@{/car_list}" method="get">
+
+						<!-- Model Name -->
+						<div class="form-group">
+							<label for="model-name">모델명</label>
+							<input type="text" id="model-name" name="carModel" class="form-control input-field">
+						</div>
+						<!-- 브랜드 체크박스 -->
+						<div class="form-group checkbox-group">
+							<label>브랜드</label>
+							<div class="checkbox">
+								<input type="checkbox" id="brand-audi" name="brands" value="아우디" hidden>
+								<label for="brand-audi">아우디</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="brand-porsche" name="brands" value="포르쉐" hidden>
+								<label for="brand-porsche">포르쉐</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="brand-benz" name="brands" value="벤츠" hidden>
+								<label for="brand-benz">벤츠</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="brand-lamborghini" name="brands" value="람보르기니" hidden>
+								<label for="brand-lamborghini">람보르기니</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="brand-ferrari" name="brands" value="페라리" hidden>
+								<label for="brand-ferrari">페라리</label>
+							</div>
+						</div>
+						<!-- 주행거리 필드 -->
+						<div class="form-group">
+							<label for="mileageRange">주행거리 (km)</label>
+							<select class="form-control" name="mileageRange" onchange="updateMileage(this)">
+								<option value="">선택</option>
+								<option value="0-5000">5,000km 미만</option>
+								<option value="5000-10000">5,000 - 10,000km</option>
+								<option value="10000-20000">10,001 - 20,000km</option>
+								<option value="20000-30000">20,001 - 30,000km</option>
+								<option value="30000-40000">30,001 - 40,000km</option>
+								<option value="40000-999999">40,001km 이상</option>
+							</select>
+							<input type="hidden" name="minMileage" id="minMileage">
+							<input type="hidden" name="maxMileage" id="maxMileage">
+						</div>
+
+						<!-- 가격대 필드 -->
+						<div class="form-group">
+							<label for="priceRange">가격</label>
+							<select class="form-control" name="priceRange" onchange="updatePrice(this)">
+								<option value="">선택</option>
+								<option value="0-60000000">5,000만원 미만</option>
+								<option value="60000000-80000000">6,000만원 ~ 8,000만원</option>
+								<option value="80000000-100000000">8,001만원 ~ 1억</option>
+								<option value="100000000-120000000">1억 ~ 1억 2천만원</option>
+								<option value="120000000-140000000">1억 2천만원 ~ 1억 4천만원</option>
+								<option value="140000000-160000000">1억 4천만원 ~ 1억 6천만원</option>
+								<option value="160000000-999999">1억 6천 이상</option>
+							</select>
+							<input type="hidden" name="minPrice" id="minPrice">
+							<input type="hidden" name="maxPrice" id="maxPrice">
+						</div>
+
+						<script>
+							function updateMileage(select) {
+								var range = select.value.split('-');
+								document.getElementById('minMileage').value = range[0];
+								document.getElementById('maxMileage').value = range[1];
+							}
+
+							function updatePrice(select) {
+								var range = select.value.split('-');
+								document.getElementById('minPrice').value = range[0];
+								document.getElementById('maxPrice').value = range[1];
+							}
+						</script>
+						<!-- Fuel Type -->
+						<div class="form-group checkbox-group">
+							<label>연료</label>
+							<div class="checkbox">
+								<input type="checkbox" id="fuel-diesel" name="fuels" value="경유" hidden>
+								<label for="fuel-diesel">경유</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="fuel-gasoline" name="fuels" value="가솔린" hidden>
+								<label for="fuel-gasoline">가솔린</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="fuel-electric" name="fuels" value="전기" hidden>
+								<label for="fuel-electric">전기</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="fuel-hybrid" name="fuels" value="하이브리드" hidden>
+								<label for="fuel-hybrid">하이브리드</label>
+							</div>
+						</div>
+						<!-- Accident History -->
+						<div class="form-group">
+							<label for="accident">사고 유무</label>
+							<select class="form-control input-field" id="accident" name="accident">
+								<option value="전체">전체</option>
+								<option value="Y">사고</option>
+								<option value="N">무사고</option>
+							</select>
+						</div>
+						<!-- 색상 선택 체크박스 -->
+						<div class="form-group checkbox-group">
+							<label>색상 선택</label>
+							<div class="checkbox">
+								<input type="checkbox" id="color-red" name="colors" value="빨간색">
+								<label for="color-red">빨간색</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="color-blue" name="colors" value="파란색">
+								<label for="color-blue">파란색</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="color-green" name="colors" value="녹색">
+								<label for="color-green">녹색</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="color-yellow" name="colors" value="노란색">
+								<label for="color-yellow">노란색</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="color-white" name="colors" value="흰색">
+								<label for="color-white">흰색</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="color-black" name="colors" value="검정색">
+								<label for="color-black">검정색</label>
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" id="color-etc" name="colors" value="기타">
+								<label for="color-etc">기타</label>
+							</div>
+						</div>
+						<!-- 검색 버튼 -->
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary search-btn">검색하기</button>
+						</div>
+						<!-- 전체 차량 보기 버튼 -->
+						<div class="form-group">
+							<a href="/car_list" class="btn btn-primary" >전체 차량 보기</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-10 offset-md-2 main-content">
+				<div class="row">
+					<div class="col-md-4 mb-4" th:each="car : ${cars}">
+						<a th:href="'/car_detail?car_registration_id=' + ${car.car_registration_id}">
+							<div class="car-wrap rounded ftco-animate">
+								<p th:text="'등록일자: ' + ${#dates.format(car.car_registration_date, 'yyyy.MM.dd')}"></p>
+								<div class="img rounded d-flex align-items-end" th:style="|background-image: url('/images/${car.car_model}(1).jpg')|"></div>
+								<div class="text">
+									<h2 class="mb-0"><a th:href="'/car_detail?car_registration_id=' + ${car.car_registration_id}" th:text="${car.car_model}"></a></h2>
+									<div class="d-flex mb-3">
+										<span class="cat" th:text="${car.car_brand}"></span>
+										<p class="price ml-auto" th:text="${car.car_price2} + '원 / 주행거리: ' + ${car.car_mileage} + 'km'"></p>
+									</div>
+									<p th:text="'연식: ' + ${car.car_year} + '년'"></p>
+									<div class="d-flex flex-column mb-0 align-items-center" style="margin-bottom: 20px;">
+										<div class="d-flex" style="margin: 0 10px 20px 10px;">
+											<a href="#" class="btn btn-primary py-2 mr-1" th:text="${car.car_fuel_type}"></a>
+											<a href="#" class="btn btn-primary py-2 mr-1" th:text="${car.car_accident_history == 'Y' ? '사고' : '무사고'}"></a>
+											<a href="#" class="btn btn-primary py-2 mr-1" th:text="${car.car_color}"></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col text-center">
+						<div class="block-27">
+							<ul>
+								<!-- Previous button -->
+								<li th:classappend="${currentPage == 0} ? 'disabled'">
+									<a th:href="@{'/car_list'(page=${currentPage - 1}, size=${size}, carModel=${carModel != null ? carModel : ''}, brands=${brands != null ? brands : ''}, minPrice=${minPrice != null ? minPrice : ''}, maxPrice=${maxPrice != null ? maxPrice : ''}, minMileage=${minMileage != null ? minMileage : ''}, maxMileage=${maxMileage != null ? maxMileage : ''}, fuels=${fuels != null ? fuels : ''}, accident=${accident != null ? accident : ''}, colors=${colors != null ? colors : ''})}">&lt;</a>
+								</li>
+
+								<!-- First page link -->
+								<li th:if="${currentPage > 2}">
+									<a th:href="@{'/car_list'(page=0, size=${size}, carModel=${carModel != null ? carModel : ''}, brands=${brands != null ? brands : ''}, minPrice=${minPrice != null ? minPrice : ''}, maxPrice=${maxPrice != null ? maxPrice : ''}, minMileage=${minMileage != null ? minMileage : ''}, maxMileage=${maxMileage != null ? maxMileage : ''}, fuels=${fuels != null ? fuels : ''}, accident=${accident != null ? accident : ''}, colors=${colors != null ? colors : ''})}">1</a>
+								</li>
+
+								<!-- Dots before current range -->
+								<li th:if="${currentPage > 2}">
+									<span>...</span>
+								</li>
+
+								<!-- Page links around the current page -->
+								<li th:each="i : ${#numbers.sequence(currentPage > 2 ? currentPage - 2 : 0, currentPage + 2 > totalPages - 1 ? totalPages - 1 : currentPage + 2)}" th:classappend="${i == currentPage} ? 'active'">
+									<a th:href="@{'/car_list'(page=${i}, size=${size}, carModel=${carModel != null ? carModel : ''}, brands=${brands != null ? brands : ''}, minPrice=${minPrice != null ? minPrice : ''}, maxPrice=${maxPrice != null ? maxPrice : ''}, minMileage=${minMileage != null ? minMileage : ''}, maxMileage=${maxMileage != null ? maxMileage : ''}, fuels=${fuels != null ? fuels : ''}, accident=${accident != null ? accident : ''}, colors=${colors != null ? colors : ''})}" th:text="${i + 1}">1</a>
+								</li>
+
+								<!-- Dots after current range -->
+								<li th:if="${currentPage + 2 < totalPages - 1}">
+									<span>...</span>
+								</li>
+
+								<!-- Last page link -->
+								<li th:if="${currentPage + 2 < totalPages - 1}">
+									<a th:href="@{'/car_list'(page=${totalPages - 1}, size=${size}, carModel=${carModel != null ? carModel : ''}, brands=${brands != null ? brands : ''}, minPrice=${minPrice != null ? minPrice : ''}, maxPrice=${maxPrice != null ? maxPrice : ''}, minMileage=${minMileage != null ? minMileage : ''}, maxMileage=${maxMileage != null ? maxMileage : ''}, fuels=${fuels != null ? fuels : ''}, accident=${accident != null ? accident : ''}, colors=${colors != null ? colors : ''})}" th:text="${totalPages}">1</a>
+								</li>
+
+								<!-- Next button -->
+								<li th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+									<a th:href="@{'/car_list'(page=${currentPage + 1}, size=${size}, carModel=${carModel != null ? carModel : ''}, brands=${brands != null ? brands : ''}, minPrice=${minPrice != null ? minPrice : ''}, maxPrice=${maxPrice != null ? maxPrice : ''}, minMileage=${minMileage != null ? minMileage : ''}, maxMileage=${maxMileage != null ? maxMileage : ''}, fuels=${fuels != null ? fuels : ''}, accident=${accident != null ? accident : ''}, colors=${colors != null ? colors : ''})}">&gt;</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- --Footer start ------------ -->
+<div th:insert="~{footer :: footer-fragment}"></div>
+<!-- ---------------Footer end ------------ -->
+
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+	<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+	<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+			stroke="#F96D00" />
+</svg></div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="js/google-map.js"></script>
+<script src="js/main.js"></script>
+<script src="js/carList_HG.js"></script><!--작성한 코드-->
+</body>
+</html>

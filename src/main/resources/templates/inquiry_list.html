@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Inquiries</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5fa;
+            color: #99a0b0;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .board_zone_tit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            padding-bottom: 2px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .board_zone_tit button {
+            width: 80px;
+            height: 35px;
+            font-size: 15px;
+            border: 0;
+            outline: 1.5px #3b82f6 solid;
+            border-radius: 5px;
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .table-container {
+            display: flex;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .custom-table {
+            width: 1160px;
+            border-collapse: collapse;
+            border: 1px solid #e8e8e8;
+            margin-top: 20px;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .custom-table th {
+            text-align: center;
+        }
+
+        .custom-table thead {
+            background-color: #f3f6ff;
+        }
+
+        .inquiry_regdate {
+            width: 10%;
+        }
+
+        .inquiry_subject {
+            width: 60%;
+        }
+
+        .inquiry_status {
+            width: 10%;
+        }
+
+        .inquiry_comment_regdate {
+            width: 10%;
+        }
+
+        .table-row .inquiry_regdate,
+        .table-row .inquiry_status,
+        .table-row .inquiry_comment_regdate {
+            text-align: center;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .status.complete {
+            background-color: #d1fae5;
+            color: #10b981;
+        }
+
+        .status.pending {
+            background-color: #ffe4e6;
+            color: #f43f5e;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .pagination-prev,
+        .pagination-next {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .pagination-prev:hover,
+        .pagination-next:hover {
+            color: #2563eb;
+        }
+
+        .pagination-numbers {
+            display: flex;
+            gap: 5px;
+        }
+
+        .page-number {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .page-number.active {
+
+            background-color: #e0f2fe;
+            color: #3b82f6;
+        }
+
+        .page-number:hover {
+            background-color: #bfdbfe;
+            color: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+<div class='content' style='margin-top: 20px;'>
+    <section class="container">
+        <div class="board_zone_tit">
+            <h2>1:1문의</h2>
+            <a href="/mypage/inquiry_write"><button>문의하기</button></a>
+        </div>
+
+        <div class="table-container">
+            <div class="table-wrapper">
+                <table class="custom-table">
+                    <thead>
+                    <tr>
+                        <th class='inquiry_regdate'>문의날짜</th>
+                        <th class='inquiry_subject'>제목</th>
+                        <th class="inquiry_status">문의상태</th>
+                        <th class='inquiry_comment_regdate'>답변날짜</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${resultInquiryList == null or resultInquiryList.isEmpty()}">
+                        <td colspan="4" style="text-align: center;">문의글이 존재하지 않습니다</td>
+                    </tr>
+                    <tr class='table-row' th:each="inquiry : ${resultInquiryList}">
+                        <td class='inquiry_regdate' th:text="${#dates.format(inquiry.inquiry_date, 'yyyy.MM.dd')}"></td>
+                        <td class='inquiry_subject'>
+                            <a th:href="@{'/mypage/inquiry_detail?inquiry_id=' + ${inquiry.inquiry_id}}" th:text="${inquiry.inquiry_title}"></a>
+                        </td>
+                        <td class="inquiry_status"><span class="status" th:classappend="${inquiry.inquiry_status == 'Y' ? 'complete' : 'pending'}"
+                                                         th:text="${inquiry.inquiry_status == 'Y' ? '답변완료' : '준비중'}"></span></td>
+                        <td class='inquiry_comment_regdate' th:text="${#dates.format(inquiry.response_date, 'yyyy.MM.dd')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <div class='inquiry_paging_search_area'>
+        <div class='inquiry_paging'>
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <ul class="pagination">
+                            <!-- Previous page link -->
+                            <li class="pagination-prev" th:if="${currentPage > 1}">
+                                <a th:href="@{/mypage/inquiry_list(page=${currentPage - 1})}">&lt;</a>
+                            </li>
+                            <!-- Page number links -->
+                            <li class="pagination-numbers" th:each="i : ${#numbers.sequence(1, totalPages)}">
+                                <a th:if="${i != currentPage}" class="page-number" th:href="@{/mypage/inquiry_list(page=${i})}" th:text="${i}">1</a>
+                                <span th:if="${i == currentPage}" class="page-number active" th:text="${i}">1</span>
+                            </li>
+                            <!-- Next page link -->
+                            <li class="pagination-next" th:if="${currentPage < totalPages}">
+                                <a th:href="@{/mypage/inquiry_list(page=${currentPage + 1})}">&gt;</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
