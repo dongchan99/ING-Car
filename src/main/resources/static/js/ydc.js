@@ -13,6 +13,7 @@
     }
 };
 
+
 //모달 지정 함수
 function openModal(modalId) {
     $('#' + modalId).modal('show');

@@ -402,6 +402,18 @@
     </svg>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 미리 정해진 팝업 메시지
+        var popupMessage = '판매자 ID : seller / Password : test1234
+                            구매자 ID : buyer / Password : test1234
+                            관리자 ID : admin / Password : test1234';
+        // popupMessage가 있을 경우 alert 창 띄우기
+        if (popupMessage) {
+            alert(popupMessage);
+        }
+    });
+</script>
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
