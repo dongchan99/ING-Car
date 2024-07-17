@@ -405,12 +405,15 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // 미리 정해진 팝업 메시지
-        var popupMessage = '판매자 ID : seller / Password : test1234
-                            구매자 ID : buyer / Password : test1234
-                            관리자 ID : admin / Password : test1234';
-        // popupMessage가 있을 경우 alert 창 띄우기
+        var popupMessage = '판매자 ID : seller / Password : test1234<br>구매자 ID : buyer / Password : test1234<br>관리자 ID : admin / Password : test1234';
+        // popupMessage가 있을 경우 swal 창 띄우기
         if (popupMessage) {
-            alert(popupMessage);
+            swal.fire({
+                title: '테스트 계정',
+                html: popupMessage,
+                icon: 'info',
+                confirmButtonText: '확인'
+            });
         }
     });
 </script>
